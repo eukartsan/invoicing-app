@@ -1,0 +1,30 @@
+.customers ul {
+    list-style-type: none;
+    flex-direction: column;
+}
+
+.customers-items {
+    display: flex;
+}
+
+.customers-item {
+    margin: 20px;
+}
+
+.customers-name{
+    width: 120px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.customers-address{
+    width: 300px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.customers-phone{
+    width: 130px;
+    padding: 20px;
+    border: 1px solid black;
+}

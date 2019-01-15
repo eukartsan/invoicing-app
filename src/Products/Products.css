@@ -1,0 +1,31 @@
+.products ul {
+    list-style-type: none;
+    flex-direction: column;
+}
+
+.products-items {
+    display: flex;
+}
+
+.products-item {
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.products-price {
+    width: 30px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.products-name {
+    width: 130px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.products-createdAt, .products-updatedAt {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid black;
+}

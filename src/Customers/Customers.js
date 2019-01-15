@@ -8,7 +8,8 @@ export default class Customers extends React.Component {
 
         this.state = {
             customerName: '',
-            customerAddress: ''
+            customerAddress: '',
+            customerPhone: ''
         }
     }
 
@@ -20,18 +21,23 @@ export default class Customers extends React.Component {
         this.setState({customerAddress: event.target.value})
     }
 
+    handlePhone = (event) => {
+        this.setState({customerPhone: event.target.value})
+    }
+
     addCustomers = (event) => {
         const { addCustomer } = this.props
         event.preventDefault()
         const newCustomerName = this.customerName.value
         const newCustomerAddress = this.customerAddress.value
-        addCustomer(uuidv4(), newCustomerName, newCustomerAddress)
-        this.setState({ customerName: '', customerAddress: '' })
+        const newCustomerPhone = this.customerPhone.value
+        addCustomer(uuidv4(), newCustomerName, newCustomerAddress, newCustomerPhone)
+        this.setState({ customerName: '', customerAddress: '', customerPhone: '' })
     }
 
     render() {
         const { customers } = this.props
-        const { customerName, customerAddress } = this.state
+        const { customerName, customerAddress, customerPhone } = this.state
 
         const customers_list = customers
             .map((item) => {
@@ -66,6 +72,12 @@ export default class Customers extends React.Component {
                             value={customerAddress}
                             ref={(input)=>{this.customerAddress = input}}
                             onChange={this.handleAddress}
+                        />
+                        <input
+                            name="customersPhone"
+                            value={customerPhone}
+                            ref={(input)=>{this.customerPhone = input}}
+                            onChange={this.handlePhone}
                         />
                     <input type="submit" value="Add"/>
                     </form>

@@ -48,12 +48,13 @@ export default class App extends React.Component {
         };
     }
 
-    addCustomer = (id, name, address) => {
+    addCustomer = (id, name, address, phone) => {
         this.setState((prevState) => {
             const newCustomer = {
                 id,
                 name,
                 address,
+                phone
             }
 
             return {

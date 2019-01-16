@@ -2,12 +2,14 @@ import React from 'react'
 import Products from './Products/Products'
 import Customers from './Customers/Customers'
 import uuidv4 from 'uuid/v4'
+import ModalCustomers from './Modal/ModalCustomers'
 
 export default class App extends React.Component {
     constructor() {
         super()
 
         this.state = {
+            isOpen: false,
             customers:
                 [{
                     id: uuidv4(),
@@ -48,6 +50,12 @@ export default class App extends React.Component {
         };
     }
 
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
     addCustomer = (id, name, address, phone) => {
         this.setState((prevState) => {
             const newCustomer = {
@@ -70,8 +78,18 @@ export default class App extends React.Component {
             <div>
                 <Customers
                     customers={customers}
-                    addCustomer={this.addCustomer}
                 />
+                <div>
+                    <button onClick={this.toggleModal}>
+                        Open the modal
+                    </button>
+
+                    <ModalCustomers
+                        show={this.state.isOpen}
+                        onClose={this.toggleModal}
+                        addCustomer={this.addCustomer}>
+                    </ModalCustomers>
+                </div>
                 <Products/>
             </div>
         )

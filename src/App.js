@@ -3,13 +3,52 @@ import Products from './Products/Products'
 import Customers from './Customers/Customers'
 import uuidv4 from 'uuid/v4'
 import ModalCustomers from './Modal/ModalCustomers'
+import ModalProducts from './Modal/ModalProducts'
 
 export default class App extends React.Component {
     constructor() {
         super()
 
         this.state = {
-            isOpen: false,
+            isOpenCustom: false,
+            isOpenProduct: false,
+            products: [
+                {
+                    id: uuidv4(),
+                    name: 'Parachute Pants',
+                    price: 29.99,
+                    createdAt: '2018-12-28 15:15:52.701 +00:00',
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                },
+                {
+                    id: uuidv4(),
+                    name: 'Phone Holder',
+                    price: 9.99,
+                    createdAt: '2018-12-28 15:15:52.701 +00:00',
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                },
+                {
+                    id: uuidv4(),
+                    name: 'Pet Rock',
+                    price: 5.99,
+                    createdAt: '2018-12-28 15:15:52.701 +00:00',
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                },
+                {
+                    id: uuidv4(),
+                    name: 'Egg Timer',
+                    price: 15.99,
+                    createdAt: '2018-12-28 15:15:52.702 +00:00',
+                    updatedAt: '2018-12-28 15:15:52.702 +00:00'
+                },
+                {
+                    id: uuidv4(),
+                    name: 'Neon Green Hat',
+                    price: 21.99,
+                    createdAt: '2018-12-28 15:15:52.702 +00:00',
+                    updatedAt: '2018-12-28 15:15:52.702 +00:00'
+                },
+            ],
             customers:
                 [{
                     id: uuidv4(),
@@ -50,9 +89,15 @@ export default class App extends React.Component {
         };
     }
 
-    toggleModal = () => {
+    toggleModalCustom = () => {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpenCustom: !this.state.isOpenCustom
+        })
+    }
+
+    toggleModalProduct = () => {
+        this.setState({
+            isOpenProduct: !this.state.isOpenProduct
         })
     }
 
@@ -71,8 +116,24 @@ export default class App extends React.Component {
         })
     }
 
+    addProducts = (id, name, price, createdAt, updatedAt) => {
+        this.setState((prevState) => {
+            const newProduct = {
+                id,
+                name,
+                price,
+                createdAt,
+                updatedAt
+            }
+
+            return {
+                products: [...prevState.products, newProduct]
+            }
+        })
+    }
+
     render() {
-        const {customers} = this.state
+        const { customers, products } = this.state
 
         return (
             <div>
@@ -80,17 +141,31 @@ export default class App extends React.Component {
                     customers={customers}
                 />
                 <div>
-                    <button onClick={this.toggleModal}>
-                        Open the modal
+                    <button onClick={this.toggleModalCustom}>
+                        Add new customers
                     </button>
 
                     <ModalCustomers
-                        show={this.state.isOpen}
-                        onClose={this.toggleModal}
+                        show={this.state.isOpenCustom}
+                        onClose={this.toggleModalCustom}
                         addCustomer={this.addCustomer}>
                     </ModalCustomers>
                 </div>
-                <Products/>
+                <Products
+                    products={products}
+                />
+                <div>
+                    <button onClick={this.toggleModalProduct}>
+                        Add new product
+                </button>
+
+                    <ModalProducts
+                        show={this.state.isOpenProduct}
+                        onClose={this.toggleModalProduct}
+                        addCustomer={this.addCustomer}>
+                    </ModalProducts>
+                </div>
+
             </div>
         )
     }

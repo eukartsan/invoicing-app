@@ -1,31 +1,35 @@
 import React from 'react'
-import './ModalCustomers.css'
+import './ModalProducts.css'
 import uuidv4 from 'uuid/v4'
 
-export default class ModalCustomers extends React.Component {
+export default class ModalProducts extends React.Component {
     constructor() {
         super()
 
         this.state = {
-            customerName: '',
-            customerAddress: '',
-            customerPhone: ''
+            productsName: '',
+            productsPrice: '',
+            productsCreatedAt: '',
+            productsDatedAt: '',
         }
     }
-
     handleName = (event) => {
-        this.setState({customerName: event.target.value})
+        this.setState({productsName: event.target.value})
     }
 
-    handleAddress = (event) => {
-        this.setState({customerAddress: event.target.value})
+    handlePrice = (event) => {
+        this.setState({productsPrice: event.target.value})
     }
 
-    handlePhone = (event) => {
-        this.setState({customerPhone: event.target.value})
+    handleCreatedAt = (event) => {
+        this.setState({productsCreatedAt: event.target.value})
     }
 
-    addCustomers = (event) => {
+    handleDatedAt = (event) => {
+        this.setState({productsDatedAt: event.target.value})
+    }
+
+    addCProducts = (event) => {
         const { addCustomer } = this.props
         event.preventDefault()
         const newCustomerName = this.customerName.value
@@ -76,11 +80,12 @@ export default class ModalCustomers extends React.Component {
                                 value="Add"/>
                         </form>
                     </div>
-                        <button onClick={this.props.onClose}>
-                            Close
-                        </button>
+                    <button onClick={this.props.onClose}>
+                        Close
+                    </button>
                 </div>
             </div>
         )
     }
+
 }

@@ -29,18 +29,19 @@ export default class ModalProducts extends React.Component {
         this.setState({productsDatedAt: event.target.value})
     }
 
-    addCProducts = (event) => {
+    addProducts = (event) => {
         const { addCustomer } = this.props
         event.preventDefault()
-        const newCustomerName = this.customerName.value
-        const newCustomerAddress = this.customerAddress.value
-        const newCustomerPhone = this.customerPhone.value
-        addCustomer(uuidv4(), newCustomerName, newCustomerAddress, newCustomerPhone)
-        this.setState({ customerName: '', customerAddress: '', customerPhone: '' })
+        const newProductName = this.productsName.value
+        const newProductPrice = this.productsPrice.value
+        const newProductCreatedAt = this.productsCreatedAt.value
+        const newProductDatedAt = this.productsDatedAt.value
+        addCustomer(uuidv4(), newProductName, newProductPrice, newProductCreatedAt, newProductDatedAt)
+        this.setState({ productsName: '', productsPrice: '', productsCreatedAt: '', productsDatedAt: '' })
     }
 
     render() {
-        const { customerName, customerAddress, customerPhone } = this.state
+        const { productsName, productsPrice, productsCreatedAt, productsDatedAt } = this.state
 
         if(!this.props.show) {
             return null
@@ -50,30 +51,38 @@ export default class ModalProducts extends React.Component {
             <div className="backdropStyle">
                 <div className="modalStyle">
                     <div>
-                        <form onSubmit={this.addCustomers}>
+                        <form onSubmit={this.addProducts}>
                             <p>Name:</p>
                             <input
                                 className="modalInput"
-                                name="customersName"
-                                value={customerName}
-                                ref={(input)=>{this.customerName = input}}
+                                name="productsName"
+                                value={productsName}
+                                ref={(input)=>{this.productsName = input}}
                                 onChange={this.handleName}
                             />
-                            <p>Address:</p>
+                            <p>Price:</p>
                             <input
                                 className="modalInput"
-                                name="customersAddress"
-                                value={customerAddress}
-                                ref={(input)=>{this.customerAddress = input}}
-                                onChange={this.handleAddress}
+                                name="productsPrice"
+                                value={productsPrice}
+                                ref={(input)=>{this.productsPrice = input}}
+                                onChange={this.handlePrice}
                             />
-                            <p>Phone:</p>
+                            <p>Created At:</p>
                             <input
                                 className="modalInput"
-                                name="customersPhone"
-                                value={customerPhone}
-                                ref={(input)=>{this.customerPhone = input}}
-                                onChange={this.handlePhone}
+                                name="productsCreatedAt"
+                                value={productsCreatedAt}
+                                ref={(input)=>{this.productsCreatedAt = input}}
+                                onChange={this.handleCreatedAt}
+                            />
+                            <p>Dated At:</p>
+                            <input
+                                className="modalInput"
+                                name="productsDatedAt"
+                                value={productsDatedAt}
+                                ref={(input)=>{this.productsDatedAt = input}}
+                                onChange={this.handleDatedAt}
                             />
                             <input
                                 type="submit"

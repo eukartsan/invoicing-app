@@ -1,10 +1,10 @@
 import React from 'react'
-import './Products.css''
+import './Products.css'
 
 export default class Products extends React.Component {
 
     render() {
-        const {products} = this.state
+        const {products} = this.props
 
         const products_list = products
             .map((item) => {

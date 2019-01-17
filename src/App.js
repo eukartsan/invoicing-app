@@ -116,7 +116,7 @@ export default class App extends React.Component {
         })
     }
 
-    addProducts = (id, name, price, createdAt, updatedAt) => {
+    addProduct = (id, name, price, createdAt, updatedAt) => {
         this.setState((prevState) => {
             const newProduct = {
                 id,
@@ -162,7 +162,7 @@ export default class App extends React.Component {
                     <ModalProducts
                         show={this.state.isOpenProduct}
                         onClose={this.toggleModalProduct}
-                        addCustomer={this.addCustomer}>
+                        addCustomer={this.addProduct}>
                     </ModalProducts>
                 </div>
 

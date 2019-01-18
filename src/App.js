@@ -132,6 +132,22 @@ export default class App extends React.Component {
         })
     }
 
+    deleteCustomer = (id) => {
+        this.setState((prevState) => {
+            return {
+                customers: prevState.customers.filter(el => el.id !== id)
+            }
+        })
+    }
+
+    deleteProduct = (id) => {
+        this.setState((prevState) => {
+            return {
+                products: prevState.products.filter(el => el.id !== id)
+            }
+        })
+    }
+
     render() {
         const { customers, products } = this.state
 
@@ -139,6 +155,7 @@ export default class App extends React.Component {
             <div>
                 <Customers
                     customers={customers}
+                    onDeleted={this.deleteCustomer}
                 />
                 <div>
                     <button onClick={this.toggleModalCustom}>
@@ -153,6 +170,7 @@ export default class App extends React.Component {
                 </div>
                 <Products
                     products={products}
+                    onDeleted={this.deleteProduct}
                 />
                 <div>
                     <button onClick={this.toggleModalProduct}>

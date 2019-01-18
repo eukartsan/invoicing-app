@@ -3,7 +3,15 @@ import './Customers.css'
 
 export default class Customers extends React.Component {
 
+
+    deleteCustomer = (id) => (event) => {
+        const { onDeleted } = this.props
+        event.preventDefault()
+        onDeleted(id)
+    }
+
     render() {
+
         const { customers } = this.props
 
         const customers_list = customers
@@ -15,6 +23,11 @@ export default class Customers extends React.Component {
                             <div className="customers-name">{name}</div>
                             <div className="customers-address">{address}</div>
                             <div className="customers-phone">{phone}</div>
+                            <div className="customers-btn">
+                                <button onClick={this.deleteCustomer(id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </li>
                 )

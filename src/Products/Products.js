@@ -3,6 +3,12 @@ import './Products.css'
 
 export default class Products extends React.Component {
 
+    deleteProduct = (id) => (event) => {
+        const { onDeleted } = this.props
+        event.preventDefault()
+        onDeleted(id)
+    }
+
     render() {
         const {products} = this.props
 
@@ -17,6 +23,11 @@ export default class Products extends React.Component {
                             <div className="products-price">{price}</div>
                             <div className="products-createdAt">{createdAt}</div>
                             <div className="products-updatedAt">{updatedAt}</div>
+                            <div className="products-btn">
+                                <button onClick={this.deleteProduct(id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </li>
                 )

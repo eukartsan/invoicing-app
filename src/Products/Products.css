@@ -18,6 +18,11 @@
     border: 1px solid black;
 }
 
+.products-btn{
+   width: 30px;
+   padding: 20px;
+}
+
 .products-name {
     width: 130px;
     padding: 20px;

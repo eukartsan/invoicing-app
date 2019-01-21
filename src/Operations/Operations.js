@@ -6,15 +6,31 @@ export default class Operations extends React.Component {
         this.props.setCustomer(event)
     }
 
+    selectProduct = (event) => {
+        this.props.setProduct(event)
+    }
+
     render() {
-        const {customers} = this.props
+        const { customers, products } = this.props
+
         const customersList = customers
             .map((item) => {
-                const {name} = item
+                const { name } = item
 
                 return (
                     <option
-                    key={item.id}>
+                        key={item.id}>
+                        {name}
+                    </option>)
+            })
+
+        const productsList = products
+            .map((item) => {
+                const { name } = item
+
+                return (
+                    <option
+                        key={item.id}>
                         {name}
                     </option>)
             })
@@ -23,10 +39,17 @@ export default class Operations extends React.Component {
             <div>
                 <label>Customer</label>
                 <select
-                onChange={this.selectCustomer}
-                ref={elem => this.setCustomer = elem}
+                    onChange={this.selectCustomer}
+                    ref={elem => this.setCustomer = elem}
                 >
                     {customersList}
+                </select>
+                <label>Product to add</label>
+                <select
+                    onChange={this.selectProduct}
+                    ref={elem => this.setProduct = elem}
+                >
+                    {productsList}
                 </select>
             </div>
         )

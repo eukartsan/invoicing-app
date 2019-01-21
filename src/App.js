@@ -1,6 +1,7 @@
 import React from 'react'
 import Products from './Products/Products'
 import Customers from './Customers/Customers'
+import Operations from './Operations/Operations'
 import uuidv4 from 'uuid/v4'
 import ModalCustomers from './Modal/ModalCustomers'
 import ModalProducts from './Modal/ModalProducts'
@@ -12,6 +13,7 @@ export default class App extends React.Component {
         this.state = {
             isOpenCustom: false,
             isOpenProduct: false,
+            customerName: '',
             products: [
                 {
                     id: uuidv4(),
@@ -89,6 +91,10 @@ export default class App extends React.Component {
         };
     }
 
+    selectCustomer = (event) => {
+        this.setState({customerName: event.target.value})
+    }
+
     toggleModalCustom = () => {
         this.setState({
             isOpenCustom: !this.state.isOpenCustom
@@ -161,7 +167,6 @@ export default class App extends React.Component {
                     <button onClick={this.toggleModalCustom}>
                         Add new customers
                     </button>
-
                     <ModalCustomers
                         show={this.state.isOpenCustom}
                         onClose={this.toggleModalCustom}
@@ -176,12 +181,15 @@ export default class App extends React.Component {
                     <button onClick={this.toggleModalProduct}>
                         Add new product
                 </button>
-
                     <ModalProducts
                         show={this.state.isOpenProduct}
                         onClose={this.toggleModalProduct}
                         addCustomer={this.addProduct}>
                     </ModalProducts>
+                    <Operations
+                        customers={customers}
+                        setCustomer={this.selectCustomer}
+                    />
                 </div>
 
             </div>

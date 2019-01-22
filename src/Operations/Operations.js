@@ -1,4 +1,10 @@
 import React from 'react'
+import './Operations.css'
+
+const invoicingItem = (value) =>
+    <div className="invoicing-item">
+        {value}
+    </div>
 
 export default class Operations extends React.Component {
 
@@ -33,9 +39,9 @@ export default class Operations extends React.Component {
             .map((invoicing) => {
             const {name, price, id} = invoicing
             return (
-                <div key={id}>
-                    {name}
-                    {price}
+                <div className="invoicing-block-item" key={id}>
+                    {invoicingItem(name)}
+                    {invoicingItem(price)}
                 </div>
             )
         })
@@ -61,7 +67,7 @@ export default class Operations extends React.Component {
                 >
                     {customersList}
                 </select>
-                <div>
+                <div className="invoicing-container">
                     {invoicingList}
                 </div>
                 <label>Product to add</label>

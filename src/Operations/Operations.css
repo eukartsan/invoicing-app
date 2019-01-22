@@ -1,0 +1,16 @@
+.invoicing-container{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.invoicing-item{
+    border: 1px solid;
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.invoicing-block-item{
+    display: flex;
+}

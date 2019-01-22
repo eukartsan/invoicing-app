@@ -15,6 +15,13 @@ export default class App extends React.Component {
             isOpenProduct: false,
             customerName: '',
             productName: '',
+            invoicingTable: [
+                {
+                    name: 'Phone Holder',
+                    price: '9.99',
+                    id: uuidv4(),
+                }
+            ],
             products: [
                 {
                     id: uuidv4(),
@@ -100,6 +107,21 @@ export default class App extends React.Component {
         this.setState({ productName: event.target.value })
     }
 
+    NewInvoicing = (Name, price) => {
+        this.setState((prevState) => {
+            const Invoicing = {
+                Name,
+                price,
+                id: uuidv4(),
+            }
+
+            return {
+                products: [...prevState.products, Invoicing]
+            }
+
+        })
+    }
+
     toggleModalCustom = () => {
         this.setState({
             isOpenCustom: !this.state.isOpenCustom
@@ -160,7 +182,7 @@ export default class App extends React.Component {
     }
 
     render() {
-        const { customers, products } = this.state
+        const { customers, products, invoicingTable } = this.state
 
         return (
             <div>
@@ -194,8 +216,10 @@ export default class App extends React.Component {
                     <Operations
                         customers={customers}
                         products={products}
+                        invoicingTable={invoicingTable}
                         setCustomer={this.selectCustomer}
                         setProduct={this.selectProduct}
+                        onNewInvoicing={this.NewInvoicing}
                     />
                 </div>
 

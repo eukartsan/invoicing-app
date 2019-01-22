@@ -10,8 +10,13 @@ export default class Operations extends React.Component {
         this.props.setProduct(event)
     }
 
+    addNewProduct = () => {
+        const Name = this.setProduct.value
+        this.props.onNewInvoicing(Name)
+    }
+
     render() {
-        const { customers, products } = this.props
+        const { customers, products, invoicingTable } = this.props
 
         const customersList = customers
             .map((item) => {
@@ -23,6 +28,18 @@ export default class Operations extends React.Component {
                         {name}
                     </option>)
             })
+
+        const invoicingList = invoicingTable
+            .map((invoicing) => {
+            const {name, price, id} = invoicing
+            return (
+                <div key={id}>
+                    {name}
+                    {price}
+                </div>
+            )
+        })
+
 
         const productsList = products
             .map((item) => {
@@ -44,6 +61,9 @@ export default class Operations extends React.Component {
                 >
                     {customersList}
                 </select>
+                <div>
+                    {invoicingList}
+                </div>
                 <label>Product to add</label>
                 <select
                     onChange={this.selectProduct}
@@ -51,6 +71,9 @@ export default class Operations extends React.Component {
                 >
                     {productsList}
                 </select>
+                <button
+                    // onClick={this.addNewProduct}
+                >Add</button>
             </div>
         )
     }

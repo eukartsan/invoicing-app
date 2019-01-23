@@ -7,6 +7,13 @@ const invoicingItem = (value) =>
     </div>
 
 export default class Operations extends React.Component {
+    constructor() {
+        super()
+
+        this.state = {
+            price: '123'
+        }
+    }
 
     selectCustomer = (event) => {
         this.props.setCustomer(event)
@@ -17,9 +24,13 @@ export default class Operations extends React.Component {
     }
 
     addNewProduct = () => {
-        const Name = this.setProduct.value
-        this.props.onNewInvoicing(Name)
+        const { products } = this.props
+
+        const name = this.setProduct.value
+        this.props.onNewInvoicing(name)
+        console.log(products)
     }
+
 
     render() {
         const { customers, products, invoicingTable } = this.props
@@ -49,13 +60,12 @@ export default class Operations extends React.Component {
 
         const productsList = products
             .map((item) => {
-                const { name } = item
-
                 return (
                     <option
                         key={item.id}>
-                        {name}
-                    </option>)
+                        {item.name} / {item.price}
+                    </option>
+                )
             })
 
         return (
@@ -72,13 +82,13 @@ export default class Operations extends React.Component {
                 </div>
                 <label>Product to add</label>
                 <select
-                    onChange={this.selectProduct}
                     ref={elem => this.setProduct = elem}
+                    onChange={this.selectProduct}
                 >
                     {productsList}
                 </select>
                 <button
-                    // onClick={this.addNewProduct}
+                    onClick={this.addNewProduct}
                 >Add</button>
             </div>
         )

@@ -107,16 +107,16 @@ export default class App extends React.Component {
         this.setState({ productName: event.target.value })
     }
 
-    NewInvoicing = (Name, price) => {
+    NewInvoicing = (name, price) => {
         this.setState((prevState) => {
             const Invoicing = {
-                Name,
+                name,
                 price,
                 id: uuidv4(),
             }
 
             return {
-                products: [...prevState.products, Invoicing]
+                invoicingTable: [...prevState.invoicingTable, Invoicing]
             }
 
         })

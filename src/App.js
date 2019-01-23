@@ -20,7 +20,12 @@ export default class App extends React.Component {
                     name: 'Phone Holder',
                     price: '9.99',
                     id: uuidv4(),
-                }
+                },
+                {
+                    name: 'Pet Rock',
+                    price: '5.99',
+                    id: uuidv4(),
+                },
             ],
             products: [
                 {
@@ -107,12 +112,12 @@ export default class App extends React.Component {
         this.setState({ productName: event.target.value })
     }
 
-    NewInvoicing = (name, price) => {
+    NewInvoicing = (name, price, id) => {
         this.setState((prevState) => {
             const Invoicing = {
                 name,
                 price,
-                id: uuidv4(),
+                id,
             }
 
             return {
@@ -181,6 +186,14 @@ export default class App extends React.Component {
         })
     }
 
+    deleteInvoicing = (id) => {
+        this.setState((prevState) => {
+            return {
+                invoicingTable: prevState.invoicingTable.filter(el => el.id !== id)
+            }
+        })
+    }
+
     render() {
         const { customers, products, invoicingTable } = this.state
 
@@ -216,6 +229,7 @@ export default class App extends React.Component {
                     <Operations
                         customers={customers}
                         products={products}
+                        onDeleted={this.deleteInvoicing}
                         invoicingTable={invoicingTable}
                         setCustomer={this.selectCustomer}
                         setProduct={this.selectProduct}

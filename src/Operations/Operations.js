@@ -24,11 +24,16 @@ export default class Operations extends React.Component {
     }
 
     addNewProduct = () => {
-        const { products } = this.props
+        //const { products } = this.props
 
         const name = this.setProduct.value
         this.props.onNewInvoicing(name)
-        console.log(products)
+    }
+
+    deleteInvoicing = (id) => (event) => {
+        const { onDeleted } = this.props
+        event.preventDefault()
+        onDeleted(id)
     }
 
 
@@ -53,6 +58,9 @@ export default class Operations extends React.Component {
                 <div className="invoicing-block-item" key={id}>
                     {invoicingItem(name)}
                     {invoicingItem(price)}
+                    <button
+                        onClick={this.deleteInvoicing(id)}
+                    >Delete</button>
                 </div>
             )
         })
@@ -66,7 +74,9 @@ export default class Operations extends React.Component {
                         {item.name} / {item.price}
                     </option>
                 )
+
             })
+
 
         return (
             <div>

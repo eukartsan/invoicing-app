@@ -3,7 +3,6 @@ import './Customers.css'
 
 export default class Customers extends React.Component {
 
-
     deleteCustomer = (id) => (event) => {
         const { onDeleted } = this.props
         event.preventDefault()
@@ -32,7 +31,6 @@ export default class Customers extends React.Component {
     }
 
     render() {
-
         const { customers } = this.props
 
         const customers_list = customers
@@ -40,56 +38,54 @@ export default class Customers extends React.Component {
                 const { id, name, address, phone, active } = item
                 return (
                     <li key={id}>
-                        {
-                            active
-                                ? <div className="customers-items">
-                                    <input
-                                        className="customers-name"
-                                        onChange={this.editCustomerName(id)}
-                                        value={name}
-                                    >
-                                    </input>
-                                    <input
-                                        className="customers-address"
-                                        onChange={this.editCustomerAddress(id)}
-                                        value={address}
-                                    >
-                                    </input>
-                                    <input
-                                        className="customers-phone"
-                                        onChange={this.editCustomerPhone(id)}
-                                        value={phone}
-                                    >
-                                    </input>
-                                    <div className="customers-btn">
-                                        <button
-                                            onClick={this.CustomActive(id)}
-                                        >
-                                            Save
-                                        </button>
-                                        <button onClick={this.deleteCustomer(id)}>
-                                            Delete
-                                        </button>
-                                    </div>
+                        {active
+                            ? <div className="customers-items">
+                                <input
+                                    className="customers-name"
+                                    onChange={this.editCustomerName(id)}
+                                    value={name} />
+                                <input
+                                    className="customers-address"
+                                    onChange={this.editCustomerAddress(id)}
+                                    value={address} />
+                                <input
+                                    className="customers-phone"
+                                    onChange={this.editCustomerPhone(id)}
+                                    value={phone} />
+                                <div className="customers-btn">
+                                    <button
+                                        className="customers-button"
+                                        onClick={this.CustomActive(id)}>
+                                        Save
+                                    </button>
+                                    <button
+                                        className="customers-button"
+                                        onClick={this.deleteCustomer(id)}>
+                                        Delete
+                                    </button>
                                 </div>
-                                : <div className="customers-items">
-                                    <div className="customers-name">
-                                        {name}
-                                    </div>
-                                    <div className="customers-address">{address}</div>
-                                    <div className="customers-phone">{phone}</div>
-                                    <div className="customers-btn">
-                                        <button
-                                            // onClick={this.editCustomer(id)}
-                                            onClick={this.CustomActive(id)}
-                                        >
-                                            Edit
-                                        </button>
-                                        <button onClick={this.deleteCustomer(id)}>
-                                            Delete
-                                        </button>
-                                    </div>
+                            </div>
+                            : <div className="customers-items">
+                                <div className="customers-name">
+                                    {name}
                                 </div>
+                                <div className="customers-address">{address}</div>
+                                <div className="customers-phone">{phone}</div>
+                                <div className="customers-btn">
+                                    <button
+                                        onClick={this.CustomActive(id)}
+                                        className="customers-button"
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={this.deleteCustomer(id)}
+                                        className="customers-button"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
                         }
                     </li>)
             })

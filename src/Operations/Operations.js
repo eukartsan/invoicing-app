@@ -11,7 +11,7 @@ export default class Operations extends React.Component {
         super()
 
         this.state = {
-            price: '123'
+            price: ''
         }
     }
 

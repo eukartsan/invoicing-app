@@ -14,22 +14,30 @@
 .customers-name{
     width: 120px;
     padding: 20px;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
 }
 
 .customers-address{
     width: 300px;
     padding: 20px;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
 }
 
 .customers-phone{
     width: 130px;
     padding: 20px;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
 }
 
 .customers-btn{
     width: 130px;
     padding: 20px;
+}
+
+.customers-button{
+    margin: 5px;
+    padding: 5px 8px;
 }

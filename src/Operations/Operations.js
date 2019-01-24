@@ -27,7 +27,9 @@ export default class Operations extends React.Component {
         //const { products } = this.props
 
         const name = this.setProduct.value
-        this.props.onNewInvoicing(name)
+        const price = this.setCustomer.value
+        this.props.onNewInvoicing(name, price)
+        //console.log(this.props.invoicingTable)
     }
 
     deleteInvoicing = (id) => (event) => {
@@ -53,17 +55,18 @@ export default class Operations extends React.Component {
 
         const invoicingList = invoicingTable
             .map((invoicing) => {
-            const {name, price, id} = invoicing
-            return (
-                <div className="invoicing-block-item" key={id}>
-                    {invoicingItem(name)}
-                    {invoicingItem(price)}
-                    <button
-                        onClick={this.deleteInvoicing(id)}
-                    >Delete</button>
-                </div>
-            )
-        })
+                const { name, price, id } = invoicing
+                return (
+                    <div className="invoicing-block-item" key={id}>
+                        {invoicingItem(name)}
+                        {invoicingItem(price)}
+                        <button
+                            onClick={this.deleteInvoicing(id)}
+                        >Delete
+                        </button>
+                    </div>
+                )
+            })
 
 
         const productsList = products
@@ -71,12 +74,10 @@ export default class Operations extends React.Component {
                 return (
                     <option
                         key={item.id}>
-                        {item.name} / {item.price}
+                        {item.name}
                     </option>
                 )
-
             })
-
 
         return (
             <div>
@@ -99,7 +100,8 @@ export default class Operations extends React.Component {
                 </select>
                 <button
                     onClick={this.addNewProduct}
-                >Add</button>
+                >Add
+                </button>
             </div>
         )
     }

@@ -10,27 +10,88 @@ export default class Customers extends React.Component {
         onDeleted(id)
     }
 
+    editCustomerName = (id) => (event) => {
+        const { editCustomerName } = this.props
+        editCustomerName(event.target.value, id)
+    }
+
+    editCustomerAddress = (id) => (event) => {
+        const { editCustomerAddress } = this.props
+        editCustomerAddress(event.target.value, id)
+    }
+
+    editCustomerPhone = (id) => (event) => {
+        const { editCustomerPhone } = this.props
+        editCustomerPhone(event.target.value, id)
+    }
+
+    CustomActive = (id) => (event) => {
+        const { setCustomActive } = this.props
+        event.preventDefault()
+        setCustomActive(id)
+    }
+
     render() {
 
         const { customers } = this.props
 
         const customers_list = customers
             .map((item) => {
-                const { id, name, address, phone } = item
+                const { id, name, address, phone, active } = item
                 return (
                     <li key={id}>
-                        <div className="customers-items">
-                            <div className="customers-name">{name}</div>
-                            <div className="customers-address">{address}</div>
-                            <div className="customers-phone">{phone}</div>
-                            <div className="customers-btn">
-                                <button onClick={this.deleteCustomer(id)}>
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                )
+                        {
+                            active
+                                ? <div className="customers-items">
+                                    <input
+                                        className="customers-name"
+                                        onChange={this.editCustomerName(id)}
+                                        value={name}
+                                    >
+                                    </input>
+                                    <input
+                                        className="customers-address"
+                                        onChange={this.editCustomerAddress(id)}
+                                        value={address}
+                                    >
+                                    </input>
+                                    <input
+                                        className="customers-phone"
+                                        onChange={this.editCustomerPhone(id)}
+                                        value={phone}
+                                    >
+                                    </input>
+                                    <div className="customers-btn">
+                                        <button
+                                            onClick={this.CustomActive(id)}
+                                        >
+                                            Save
+                                        </button>
+                                        <button onClick={this.deleteCustomer(id)}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                                : <div className="customers-items">
+                                    <div className="customers-name">
+                                        {name}
+                                    </div>
+                                    <div className="customers-address">{address}</div>
+                                    <div className="customers-phone">{phone}</div>
+                                    <div className="customers-btn">
+                                        <button
+                                            // onClick={this.editCustomer(id)}
+                                            onClick={this.CustomActive(id)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button onClick={this.deleteCustomer(id)}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                        }
+                    </li>)
             })
 
         return (

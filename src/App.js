@@ -69,37 +69,43 @@ export default class App extends React.Component {
                     id: uuidv4(),
                     name: 'Mark Benson',
                     address: '353 Rochester St, Rialto FL 43250',
-                    phone: '555-534-2342'
+                    phone: '555-534-2342',
+                    active: false
                 },
                     {
                         id: uuidv4(),
                         name: 'Bob Smith',
                         address: '215 Market St, Dansville CA 94',
-                        phone: '555-534-2177'
+                        phone: '555-534-2177',
+                        active: false
                     },
                     {
                         id: uuidv4(),
                         name: 'John Draper',
                         address: '890 Main St, Fontana IL 31450',
-                        phone: '555-534-1111'
+                        phone: '555-534-1111',
+                        active: false
                     },
                     {
                         id: uuidv4(),
                         name: 'Mary Jane',
                         address: '555 Vallei St, Rialto FL 43250',
-                        phone: '555-534-2342'
+                        phone: '555-534-2342',
+                        active: false
                     },
                     {
                         id: uuidv4(),
                         name: 'Freddy Black',
                         address: '777 Dorton St, Dansville CA 94',
-                        phone: '555-534-2177'
+                        phone: '555-534-2177',
+                        active: false
                     },
                     {
                         id: uuidv4(),
                         name: 'Harry Simus ',
                         address: '558 Lowpi St, Fontana IL 31450',
-                        phone: '555-534-1111'
+                        phone: '555-534-1111',
+                        active: false
                     }]
         };
     }
@@ -170,6 +176,36 @@ export default class App extends React.Component {
         })
     }
 
+    editCustomer = (name, id) => {
+        const customerCopy = [...this.state.customers]
+        const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
+        prevCustomer.name = name
+
+        this.setState({
+            customers: customerCopy
+        })
+    }
+
+    editCustomerAddress = (address, id) => {
+        const customerCopy = [...this.state.customers]
+        const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
+        prevCustomer.address = address
+
+        this.setState({
+            customers: customerCopy
+        })
+    }
+
+    editCustomerPhone = (phone, id) => {
+        const customerCopy = [...this.state.customers]
+        const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
+        prevCustomer.phone = phone
+
+        this.setState({
+            customers: customerCopy
+        })
+    }
+
     deleteCustomer = (id) => {
         this.setState((prevState) => {
             return {
@@ -194,6 +230,16 @@ export default class App extends React.Component {
         })
     }
 
+    setCustomerActive = (id) => {
+        const customerCopy = [...this.state.customers]
+        const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
+        prevCustomer.active = !prevCustomer.active
+
+        this.setState({
+            customers: customerCopy
+        })
+    }
+
     render() {
         const { customers, products, invoicingTable } = this.state
 
@@ -202,6 +248,10 @@ export default class App extends React.Component {
                 <Customers
                     customers={customers}
                     onDeleted={this.deleteCustomer}
+                    editCustomerName={this.editCustomer}
+                    setCustomActive={this.setCustomerActive}
+                    editCustomerAddress={this.editCustomerAddress}
+                    editCustomerPhone={this.editCustomerPhone}
                 />
                 <div>
                     <button onClick={this.toggleModalCustom}>
@@ -236,7 +286,6 @@ export default class App extends React.Component {
                         onNewInvoicing={this.NewInvoicing}
                     />
                 </div>
-
             </div>
         )
     }

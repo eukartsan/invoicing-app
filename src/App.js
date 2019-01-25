@@ -33,35 +33,40 @@ export default class App extends React.Component {
                     name: 'Parachute Pants',
                     price: 29.99,
                     createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
+                    active: false
                 },
                 {
                     id: uuidv4(),
                     name: 'Phone Holder',
                     price: 9.99,
                     createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
+                    active: false
                 },
                 {
                     id: uuidv4(),
                     name: 'Pet Rock',
                     price: 5.99,
                     createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00'
+                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
+                    active: false
                 },
                 {
                     id: uuidv4(),
                     name: 'Egg Timer',
                     price: 15.99,
                     createdAt: '2018-12-28 15:15:52.702 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.702 +00:00'
+                    updatedAt: '2018-12-28 15:15:52.702 +00:00',
+                    active: false
                 },
                 {
                     id: uuidv4(),
                     name: 'Neon Green Hat',
                     price: 21.99,
                     createdAt: '2018-12-28 15:15:52.702 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.702 +00:00'
+                    updatedAt: '2018-12-28 15:15:52.702 +00:00',
+                    active: false
                 },
             ],
             customers:
@@ -180,7 +185,6 @@ export default class App extends React.Component {
         const customerCopy = [...this.state.customers]
         const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
         prevCustomer.name = name
-
         this.setState({
             customers: customerCopy
         })
@@ -190,7 +194,6 @@ export default class App extends React.Component {
         const customerCopy = [...this.state.customers]
         const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
         prevCustomer.address = address
-
         this.setState({
             customers: customerCopy
         })
@@ -200,7 +203,6 @@ export default class App extends React.Component {
         const customerCopy = [...this.state.customers]
         const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
         prevCustomer.phone = phone
-
         this.setState({
             customers: customerCopy
         })
@@ -234,9 +236,53 @@ export default class App extends React.Component {
         const customerCopy = [...this.state.customers]
         const prevCustomer = customerCopy.find(prevCustomer => prevCustomer.id === id)
         prevCustomer.active = !prevCustomer.active
-
         this.setState({
             customers: customerCopy
+        })
+    }
+
+    setProductsActive = (id) => {
+        const productsCopy = [...this.state.products]
+        const prevProduct = productsCopy.find(prevProduct => prevProduct.id === id)
+        prevProduct.active = !prevProduct.active
+        this.setState({
+            products: productsCopy
+        })
+    }
+
+    editProduct = (name, id) => {
+        const productsCopy = [...this.state.products]
+        const prevProduct = productsCopy.find(prevProduct => prevProduct.id === id)
+        prevProduct.name = name
+        this.setState({
+            products: productsCopy
+        })
+    }
+
+    editProductPrice = (price, id) => {
+        const productsCopy = [...this.state.products]
+        const prevProduct = productsCopy.find(prevProduct => prevProduct.id === id)
+        prevProduct.price = price
+        this.setState({
+            products: productsCopy
+        })
+    }
+
+    editProductCreated = (createdAt, id) => {
+        const productsCopy = [...this.state.products]
+        const prevProduct = productsCopy.find(prevProduct => prevProduct.id === id)
+        prevProduct.createdAt = createdAt
+        this.setState({
+            products: productsCopy
+        })
+    }
+
+    editProductUpdated = (updatedAt, id) => {
+        const productsCopy = [...this.state.products]
+        const prevProduct = productsCopy.find(prevProduct => prevProduct.id === id)
+        prevProduct.updatedAt = updatedAt
+        this.setState({
+            products: productsCopy
         })
     }
 
@@ -266,6 +312,11 @@ export default class App extends React.Component {
                 <Products
                     products={products}
                     onDeleted={this.deleteProduct}
+                    setProductsActive={this.setProductsActive}
+                    editProductName={this.editProduct}
+                    editProductPrice={this.editProductPrice}
+                    editProductCreated={this.editProductCreated}
+                    editProductUpdated={this.editProductUpdated}
                 />
                 <div>
                     <button onClick={this.toggleModalProduct}>

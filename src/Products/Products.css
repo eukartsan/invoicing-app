@@ -15,7 +15,6 @@
 .products-price {
     width: 30px;
     padding: 20px;
-    border: 1px solid black;
 }
 
 .products-btn{
@@ -26,11 +25,9 @@
 .products-name {
     width: 130px;
     padding: 20px;
-    border: 1px solid black;
 }
 
 .products-createdAt, .products-updatedAt {
     width: 300px;
     padding: 20px;
-    border: 1px solid black;
 }

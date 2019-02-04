@@ -5,6 +5,10 @@ import Operations from './Operations/Operations'
 import uuidv4 from 'uuid/v4'
 import ModalCustomers from './Modal/ModalCustomers'
 import ModalProducts from './Modal/ModalProducts'
+import { Route } from 'react-router-dom'
+import AppHeader from './header/app-header'
+import { CustomersPage, ProductsPage } from './pages'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 export default class App extends React.Component {
     constructor() {
@@ -291,6 +295,19 @@ export default class App extends React.Component {
 
         return (
             <div>
+                <Router>
+                    <div>
+                    <AppHeader />
+                    <Route
+                        path="/customers"
+                        component={CustomersPage}
+                    />
+                    <Route
+                        path="/products"
+                        component={ProductsPage}
+                    />
+                    </div>
+                </Router>
                 <Customers
                     customers={customers}
                     onDeleted={this.deleteCustomer}

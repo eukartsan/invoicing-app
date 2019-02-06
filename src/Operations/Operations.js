@@ -68,7 +68,6 @@ export default class Operations extends React.Component {
                 )
             })
 
-
         const productsList = products
             .map((item) => {
                 return (
@@ -105,5 +104,4 @@ export default class Operations extends React.Component {
             </div>
         )
     }
-
 }

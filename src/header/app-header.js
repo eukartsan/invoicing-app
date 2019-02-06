@@ -11,6 +11,9 @@ const AppHeader = () => {
             <li>
                 <Link to="/products">Products</Link>
             </li>
+            <li>
+                <Link to="/operations">Operations</Link>
+            </li>
         </ul>
         </div>
     );

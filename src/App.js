@@ -1,13 +1,11 @@
 import React from 'react'
 import Products from './Products/Products'
-import Customers from './Customers/Customers'
 import Operations from './Operations/Operations'
 import uuidv4 from 'uuid/v4'
-import ModalCustomers from './Modal/ModalCustomers'
 import ModalProducts from './Modal/ModalProducts'
 import { Route } from 'react-router-dom'
 import AppHeader from './header/app-header'
-import { CustomersPage, ProductsPage } from './pages'
+import { CustomersPage, ProductsPage, OperationsPage } from './pages'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default class App extends React.Component {
@@ -19,6 +17,49 @@ export default class App extends React.Component {
             isOpenProduct: false,
             customerName: '',
             productName: '',
+            customers:
+                [{
+                    id: uuidv4(),
+                    name: 'Mark Benson',
+                    address: '353 Rochester St, Rialto FL 43250',
+                    phone: '555-534-2342',
+                    active: false
+                },
+                    {
+                        id: uuidv4(),
+                        name: 'Bob Smith',
+                        address: '215 Market St, Dansville CA 94',
+                        phone: '555-534-2177',
+                        active: false
+                    },
+                    {
+                        id: uuidv4(),
+                        name: 'John Draper',
+                        address: '890 Main St, Fontana IL 31450',
+                        phone: '555-534-1111',
+                        active: false
+                    },
+                    {
+                        id: uuidv4(),
+                        name: 'Mary Jane',
+                        address: '555 Vallei St, Rialto FL 43250',
+                        phone: '555-534-2342',
+                        active: false
+                    },
+                    {
+                        id: uuidv4(),
+                        name: 'Freddy Black',
+                        address: '777 Dorton St, Dansville CA 94',
+                        phone: '555-534-2177',
+                        active: false
+                    },
+                    {
+                        id: uuidv4(),
+                        name: 'Harry Simus ',
+                        address: '558 Lowpi St, Fontana IL 31450',
+                        phone: '555-534-1111',
+                        active: false
+                    }],
             invoicingTable: [
                 {
                     name: 'Phone Holder',
@@ -73,49 +114,6 @@ export default class App extends React.Component {
                     active: false
                 },
             ],
-            customers:
-                [{
-                    id: uuidv4(),
-                    name: 'Mark Benson',
-                    address: '353 Rochester St, Rialto FL 43250',
-                    phone: '555-534-2342',
-                    active: false
-                },
-                    {
-                        id: uuidv4(),
-                        name: 'Bob Smith',
-                        address: '215 Market St, Dansville CA 94',
-                        phone: '555-534-2177',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'John Draper',
-                        address: '890 Main St, Fontana IL 31450',
-                        phone: '555-534-1111',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Mary Jane',
-                        address: '555 Vallei St, Rialto FL 43250',
-                        phone: '555-534-2342',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Freddy Black',
-                        address: '777 Dorton St, Dansville CA 94',
-                        phone: '555-534-2177',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Harry Simus ',
-                        address: '558 Lowpi St, Fontana IL 31450',
-                        phone: '555-534-1111',
-                        active: false
-                    }]
         };
     }
 
@@ -297,53 +295,40 @@ export default class App extends React.Component {
             <div>
                 <Router>
                     <div>
-                    <AppHeader />
-                    <Route
-                        path="/customers"
-                        component={CustomersPage}
-                    />
-                    <Route
-                        path="/products"
-                        component={ProductsPage}
-                    />
+                        <AppHeader />
+                        <Route
+                            path="/customers"
+                            component={CustomersPage}
+                        />
+                        <Route
+                            path="/products"
+                            component={ProductsPage}
+                            products={products}
+                        />
+                        <Route
+                            path="/operations"
+                            component={OperationsPage}
+                        />
                     </div>
                 </Router>
-                <Customers
-                    customers={customers}
-                    onDeleted={this.deleteCustomer}
-                    editCustomerName={this.editCustomer}
-                    setCustomActive={this.setCustomerActive}
-                    editCustomerAddress={this.editCustomerAddress}
-                    editCustomerPhone={this.editCustomerPhone}
-                />
+                {/*<Products*/}
+                    {/*products={products}*/}
+                    {/*onDeleted={this.deleteProduct}*/}
+                    {/*setProductsActive={this.setProductsActive}*/}
+                    {/*editProductName={this.editProduct}*/}
+                    {/*editProductPrice={this.editProductPrice}*/}
+                    {/*editProductCreated={this.editProductCreated}*/}
+                    {/*editProductUpdated={this.editProductUpdated}*/}
+                {/*/>*/}
                 <div>
-                    <button onClick={this.toggleModalCustom}>
-                        Add new customers
-                    </button>
-                    <ModalCustomers
-                        show={this.state.isOpenCustom}
-                        onClose={this.toggleModalCustom}
-                        addCustomer={this.addCustomer}>
-                    </ModalCustomers>
-                </div>
-                <Products
-                    products={products}
-                    onDeleted={this.deleteProduct}
-                    setProductsActive={this.setProductsActive}
-                    editProductName={this.editProduct}
-                    editProductPrice={this.editProductPrice}
-                    editProductCreated={this.editProductCreated}
-                    editProductUpdated={this.editProductUpdated}
-                />
-                <div>
-                    <button onClick={this.toggleModalProduct}>
-                        Add new product
-                    </button>
-                    <ModalProducts
-                        show={this.state.isOpenProduct}
-                        onClose={this.toggleModalProduct}
-                        addCustomer={this.addProduct}>
-                    </ModalProducts>
+                    {/*<button onClick={this.toggleModalProduct}>*/}
+                        {/*Add new product*/}
+                    {/*</button>*/}
+                    {/*<ModalProducts*/}
+                        {/*show={this.state.isOpenProduct}*/}
+                        {/*onClose={this.toggleModalProduct}*/}
+                        {/*addCustomer={this.addProduct}>*/}
+                    {/*</ModalProducts>*/}
                     <Operations
                         customers={customers}
                         products={products}

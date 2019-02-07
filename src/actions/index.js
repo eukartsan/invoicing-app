@@ -5,6 +5,14 @@ const customersLoaded = (newCustomers) => {
     }
 };
 
+const productsLoaded = (newProducts) => {
+    return {
+        type: 'ADD_PRODUCTS',
+        payload: newProducts
+    }
+}
+
 export {
-    customersLoaded
+    customersLoaded,
+    productsLoaded
 }

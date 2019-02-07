@@ -2,7 +2,7 @@ import React from 'react'
 import './ModalCustomers.css'
 import uuidv4 from 'uuid/v4'
 
-export default class ModalCustomers extends React.Component {
+class ModalCustomers extends React.Component {
     constructor() {
         super()
 
@@ -36,7 +36,7 @@ export default class ModalCustomers extends React.Component {
     }
 
     render() {
-        const { customerName, customerAddress, customerPhone } = this.state
+        const { customerName, customerAddress, customerPhone } = this.props
 
         if(!this.props.show) {
             return null
@@ -84,3 +84,5 @@ export default class ModalCustomers extends React.Component {
         )
     }
 }
+
+export default ModalCustomers

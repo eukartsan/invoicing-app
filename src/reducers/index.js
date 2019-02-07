@@ -84,7 +84,19 @@ const initialState = {
                 updatedAt: '2018-12-28 15:15:52.702 +00:00',
                 active: false
             },
-        ]
+        ],
+    invoicingTable: [
+        {
+            name: 'Phone Holder',
+            price: '9.99',
+            id: uuidv4(),
+        },
+        {
+            name: 'Pet Rock',
+            price: '5.99',
+            id: uuidv4(),
+        },
+    ]
 }
 
 const reducer = (state = initialState, action) => {
@@ -92,11 +104,20 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_CUSTOMERS':
             return {
+                ...state,
                 customers: [],
             };
         case 'ADD_PRODUCTS':
             return {
+                ...state,
                 products: [],
+            };
+        case 'ADD_OPERATION':
+            return {
+                ...state,
+                customers: [],
+                products: [],
+                invoicingTable: []
             };
         default:
             return state

@@ -5,8 +5,8 @@ import ModalCustomers from '../Modal/ModalCustomers'
 const CustomersPage = () => {
     return (
         <div>
-            <Customers/>
-            <ModalCustomers/>
+            <Customers />
+            <ModalCustomers />
         </div>
     );
 };

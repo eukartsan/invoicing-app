@@ -1,0 +1,11 @@
+.header-block{
+    display: flex;
+}
+
+.header-block a{
+    text-decoration: none;
+}
+
+.header-block-item{
+    padding: 10px;
+}

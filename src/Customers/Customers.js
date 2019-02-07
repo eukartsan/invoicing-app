@@ -5,16 +5,13 @@ import { connect } from 'react-redux'
 import {customersLoaded} from '../actions'
 
 class Customers extends React.Component {
+    constructor() {
+        super()
 
-    // componentDidMount() {
-    //     const {
-    //         InvoicingService,
-    //         customersLoaded
-    //     } = this.props;
-    //     InvoicingService.getCustomers()
-    //         .then((customers) => customersLoaded(customers)
-    // }
-
+        this.state = {
+            isOpenProduct: false
+        };
+    }
 
     deleteCustomer = (id) => (event) => {
         const { onDeleted } = this.props
@@ -41,6 +38,12 @@ class Customers extends React.Component {
         const { setCustomActive } = this.props
         event.preventDefault()
         setCustomActive(id)
+    }
+
+    toggleModalProduct = () => {
+        this.setState({
+            isOpenProduct: !this.state.isOpenProduct
+        })
     }
 
     render() {
@@ -108,6 +111,9 @@ class Customers extends React.Component {
                 <ul>
                     {customers_list}
                 </ul>
+                <button onClick={this.toggleModalProduct}>
+                    Add new product
+                </button>
             </div>
         )
     }

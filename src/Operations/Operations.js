@@ -1,12 +1,14 @@
 import React from 'react'
 import './Operations.css'
+import { connect } from 'react-redux';
+import { operationLoaded } from '../actions';
 
 const invoicingItem = (value) =>
     <div className="invoicing-item">
         {value}
     </div>
 
-export default class Operations extends React.Component {
+class Operations extends React.Component {
     constructor() {
         super()
 
@@ -25,7 +27,6 @@ export default class Operations extends React.Component {
 
     addNewProduct = () => {
         //const { products } = this.props
-
         const name = this.setProduct.value
         const price = this.setCustomer.value
         this.props.onNewInvoicing(name, price)
@@ -105,3 +106,13 @@ export default class Operations extends React.Component {
         )
     }
 }
+
+const mapStateToProps =({products, customers, invoicingTable}) => {
+    return {products, customers, invoicingTable}
+};
+
+const mapDispatchToProps = {
+    operationLoaded
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (Operations)

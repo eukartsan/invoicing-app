@@ -8,11 +8,19 @@ const customersLoaded = (newCustomers) => {
 const productsLoaded = (newProducts) => {
     return {
         type: 'ADD_PRODUCTS',
-        payload: newProducts
+        payload: newProducts,
+    }
+};
+
+const operationLoaded = (newOperation) => {
+    return {
+        type: 'ADD_OPERATION',
+        payload: newOperation
     }
 }
 
 export {
     customersLoaded,
-    productsLoaded
+    productsLoaded,
+    operationLoaded
 }

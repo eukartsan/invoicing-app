@@ -1,8 +1,4 @@
 import React from 'react'
-import Products from './Products/Products'
-import Operations from './Operations/Operations'
-import uuidv4 from 'uuid/v4'
-import ModalProducts from './Modal/ModalProducts'
 import { Route } from 'react-router-dom'
 import AppHeader from './header/app-header'
 import { CustomersPage, ProductsPage, OperationsPage } from './pages'
@@ -16,104 +12,7 @@ export default class App extends React.Component {
             isOpenCustom: false,
             isOpenProduct: false,
             customerName: '',
-            productName: '',
-            customers:
-                [{
-                    id: uuidv4(),
-                    name: 'Mark Benson',
-                    address: '353 Rochester St, Rialto FL 43250',
-                    phone: '555-534-2342',
-                    active: false
-                },
-                    {
-                        id: uuidv4(),
-                        name: 'Bob Smith',
-                        address: '215 Market St, Dansville CA 94',
-                        phone: '555-534-2177',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'John Draper',
-                        address: '890 Main St, Fontana IL 31450',
-                        phone: '555-534-1111',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Mary Jane',
-                        address: '555 Vallei St, Rialto FL 43250',
-                        phone: '555-534-2342',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Freddy Black',
-                        address: '777 Dorton St, Dansville CA 94',
-                        phone: '555-534-2177',
-                        active: false
-                    },
-                    {
-                        id: uuidv4(),
-                        name: 'Harry Simus ',
-                        address: '558 Lowpi St, Fontana IL 31450',
-                        phone: '555-534-1111',
-                        active: false
-                    }],
-            invoicingTable: [
-                {
-                    name: 'Phone Holder',
-                    price: '9.99',
-                    id: uuidv4(),
-                },
-                {
-                    name: 'Pet Rock',
-                    price: '5.99',
-                    id: uuidv4(),
-                },
-            ],
-            products: [
-                {
-                    id: uuidv4(),
-                    name: 'Parachute Pants',
-                    price: 29.99,
-                    createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
-                    active: false
-                },
-                {
-                    id: uuidv4(),
-                    name: 'Phone Holder',
-                    price: 9.99,
-                    createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
-                    active: false
-                },
-                {
-                    id: uuidv4(),
-                    name: 'Pet Rock',
-                    price: 5.99,
-                    createdAt: '2018-12-28 15:15:52.701 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.701 +00:00',
-                    active: false
-                },
-                {
-                    id: uuidv4(),
-                    name: 'Egg Timer',
-                    price: 15.99,
-                    createdAt: '2018-12-28 15:15:52.702 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.702 +00:00',
-                    active: false
-                },
-                {
-                    id: uuidv4(),
-                    name: 'Neon Green Hat',
-                    price: 21.99,
-                    createdAt: '2018-12-28 15:15:52.702 +00:00',
-                    updatedAt: '2018-12-28 15:15:52.702 +00:00',
-                    active: false
-                },
-            ],
+            productName: ''
         };
     }
 
@@ -143,12 +42,6 @@ export default class App extends React.Component {
     toggleModalCustom = () => {
         this.setState({
             isOpenCustom: !this.state.isOpenCustom
-        })
-    }
-
-    toggleModalProduct = () => {
-        this.setState({
-            isOpenProduct: !this.state.isOpenProduct
         })
     }
 
@@ -289,7 +182,6 @@ export default class App extends React.Component {
     }
 
     render() {
-        const { customers, products, invoicingTable } = this.state
 
         return (
             <div>
@@ -303,7 +195,6 @@ export default class App extends React.Component {
                         <Route
                             path="/products"
                             component={ProductsPage}
-                            products={products}
                         />
                         <Route
                             path="/operations"
@@ -329,15 +220,15 @@ export default class App extends React.Component {
                         {/*onClose={this.toggleModalProduct}*/}
                         {/*addCustomer={this.addProduct}>*/}
                     {/*</ModalProducts>*/}
-                    <Operations
-                        customers={customers}
-                        products={products}
-                        onDeleted={this.deleteInvoicing}
-                        invoicingTable={invoicingTable}
-                        setCustomer={this.selectCustomer}
-                        setProduct={this.selectProduct}
-                        onNewInvoicing={this.NewInvoicing}
-                    />
+                    {/*<Operations*/}
+                        {/*customers={customers}*/}
+                        {/*products={products}*/}
+                        {/*onDeleted={this.deleteInvoicing}*/}
+                        {/*invoicingTable={invoicingTable}*/}
+                        {/*setCustomer={this.selectCustomer}*/}
+                        {/*setProduct={this.selectProduct}*/}
+                        {/*onNewInvoicing={this.NewInvoicing}*/}
+                    {/*/>*/}
                 </div>
             </div>
         )

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Operations.css'
 import { connect } from 'react-redux';
-import { operationLoaded } from '../actions';
+import { operationLoaded, onDeleteOperations} from '../actions';
 
 const invoicingItem = (value) =>
     <div className="invoicing-item">
@@ -33,10 +33,8 @@ class Operations extends React.Component {
         //console.log(this.props.invoicingTable)
     }
 
-    deleteInvoicing = (id) => (event) => {
-        const { onDeleted } = this.props
-        event.preventDefault()
-        onDeleted(id)
+    deleteInvoicing = (id) => () => {
+        this.props.handleOnDelOperations(id)
     }
 
 
@@ -111,8 +109,11 @@ const mapStateToProps =({products, customers, invoicingTable}) => {
     return {products, customers, invoicingTable}
 };
 
-const mapDispatchToProps = {
-    operationLoaded
-}
+const mapDispatchToProps = dispatch => {
+    return {
+        operationLoaded,
+        handleOnDelOperations: (id) => dispatch(onDeleteOperations(id)),
+    }
+};
 
 export default connect (mapStateToProps, mapDispatchToProps) (Operations)

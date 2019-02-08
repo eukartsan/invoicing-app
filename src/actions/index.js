@@ -29,10 +29,24 @@ const onDeleteProducts = (id) => ({
     id
 });
 
+const onDeleteOperations = (id) => ({
+    type: 'DELETE_OPERATIONS',
+    id
+});
+
+const addNewCustomers = (id) => {
+    return {
+        type: 'ADD_NEW_CUSTOMERS',
+        payload: id
+    };
+};
+
 export {
     customersLoaded,
     productsLoaded,
     operationLoaded,
     onDeleteCustomers,
-    onDeleteProducts
+    onDeleteProducts,
+    onDeleteOperations,
+    addNewCustomers
 }

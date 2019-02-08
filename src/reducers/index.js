@@ -121,10 +121,24 @@ const reducer = (state = initialState, action) => {
             };
         case 'DELETE_CUSTOMERS':
             const customers = state.customers.filter((customer) => customer.id !== action.id);
-            return {...state, customers};
+            return { ...state, customers };
         case 'DELETE_PRODUCTS':
             const products = state.products.filter((product) => product.id !== action.id);
-            return {...state, products};
+            return { ...state, products };
+        case 'DELETE_OPERATIONS':
+            const invoicingTable = state.invoicingTable.filter((invoicing) => invoicing.id !== action.id);
+            return { ...state, invoicingTable };
+        case 'ADD_NEW_CUSTOMERS': {
+            const customerItems = {
+                id: uuidv4(),
+                name: 'Sherlock Holmes',
+                address: '221B Baker Street',
+                phone: '012-345-6789',
+                active: false
+            };
+            const customers = [...state.customers, customerItems]
+            return { ...state, customers }
+        }
         default:
             return state
     }

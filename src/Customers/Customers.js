@@ -2,7 +2,7 @@ import React from 'react'
 import './Customers.css'
 
 import { connect } from 'react-redux'
-import {customersLoaded, onDeleteCustomers} from '../actions'
+import {customersLoaded, onDeleteCustomers, addNewCustomers} from '../actions'
 
 class Customers extends React.Component {
     constructor() {
@@ -44,9 +44,14 @@ class Customers extends React.Component {
         })
     }
 
+    addNewCustomers =  (id) => (event) => {
+        event.preventDefault()
+        this.props.handleOnAddCustomers(id)
+    }
+
     render() {
 
-        const { customers } = this.props;
+        const { customers, addNewCustomers } = this.props;
 
         const customers_list = customers
             .map((item) => {
@@ -110,7 +115,10 @@ class Customers extends React.Component {
                 <ul>
                     {customers_list}
                 </ul>
-                <button onClick={this.toggleModalProduct}>
+                <button
+                    // onClick={this.toggleModalProduct}
+                    onClick={this.addNewCustomers()}
+                >
                     Add new product
                 </button>
             </div>
@@ -126,6 +134,7 @@ const mapDispatchToProps = dispatch => {
     return {
         customersLoaded,
         handleOnDelCustomers: (id) => dispatch(onDeleteCustomers(id)),
+        handleOnAddCustomers: (id) => dispatch(addNewCustomers(id)),
     }
 };
 

@@ -119,6 +119,12 @@ const reducer = (state = initialState, action) => {
                 products: [],
                 invoicingTable: []
             };
+        case 'DELETE_CUSTOMERS':
+            const customers = state.customers.filter((customer) => customer.id !== action.id);
+            return {...state, customers};
+        case 'DELETE_PRODUCTS':
+            const products = state.products.filter((product) => product.id !== action.id);
+            return {...state, products};
         default:
             return state
     }

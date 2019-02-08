@@ -6,7 +6,7 @@ const CustomersPage = () => {
     return (
         <div>
             <Customers />
-            <ModalCustomers />
+            <ModalCustomers/>
         </div>
     );
 };

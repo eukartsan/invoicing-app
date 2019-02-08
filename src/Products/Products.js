@@ -1,15 +1,13 @@
 import React from 'react'
 import './Products.css'
-import { productsLoaded } from '../actions';
+import { productsLoaded, onDeleteProducts } from '../actions';
 import { connect } from 'react-redux';
 
 class Products extends React.Component {
 
-    deleteProduct = (id) => (event) => {
-        const { onDeleted } = this.props
-        event.preventDefault()
-        onDeleted(id)
-    }
+    deleteProduct = (id) => () => {
+        this.props.handleOnDelProducts(id)
+    };
 
     ProductsActive = (id) => (event) => {
         const { setProductsActive } = this.props
@@ -94,7 +92,7 @@ class Products extends React.Component {
                         }
                     </li>
                 )
-            })
+            });
 
         return (
             <div className="products">
@@ -110,8 +108,11 @@ const mapStateToProps =({products}) => {
     return {products}
 };
 
-const mapDispatchToProps = {
-    productsLoaded
+const mapDispatchToProps = dispatch => {
+    return {
+        productsLoaded,
+        handleOnDelProducts: (id) => dispatch(onDeleteProducts(id)),
+    }
 }
 
 export default connect (mapStateToProps, mapDispatchToProps) (Products)

@@ -2,7 +2,7 @@ import React from 'react'
 import './Customers.css'
 
 import { connect } from 'react-redux'
-import {customersLoaded} from '../actions'
+import {customersLoaded, onDeleteCustomers} from '../actions'
 
 class Customers extends React.Component {
     constructor() {
@@ -13,10 +13,8 @@ class Customers extends React.Component {
         };
     }
 
-    deleteCustomer = (id) => (event) => {
-        const { onDeleted } = this.props
-        event.preventDefault()
-        onDeleted(id)
+    deleteCustomer = (id) => () => {
+        this.props.handleOnDelCustomers(id)
     }
 
     editCustomerName = (id) => (event) => {
@@ -47,6 +45,7 @@ class Customers extends React.Component {
     }
 
     render() {
+
         const { customers } = this.props;
 
         const customers_list = customers
@@ -123,8 +122,11 @@ const mapStateToProps =({customers}) => {
     return {customers}
 };
 
-const mapDispatchToProps = {
-    customersLoaded
-}
+const mapDispatchToProps = dispatch => {
+    return {
+        customersLoaded,
+        handleOnDelCustomers: (id) => dispatch(onDeleteCustomers(id)),
+    }
+};
 
 export default connect (mapStateToProps, mapDispatchToProps) (Customers)

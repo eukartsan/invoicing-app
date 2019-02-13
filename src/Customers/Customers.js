@@ -2,7 +2,7 @@ import React from 'react'
 import './Customers.css'
 
 import { connect } from 'react-redux'
-import {customersLoaded, onDeleteCustomers, addNewCustomers} from '../actions'
+import { onDeleteCustomers, addNewCustomers, customerModalShow } from '../actions'
 
 class Customers extends React.Component {
     constructor() {
@@ -44,9 +44,14 @@ class Customers extends React.Component {
         })
     }
 
-    addNewCustomers =  (id) => (event) => {
+    addNewCustomers = (id) => (event) => {
         event.preventDefault()
         this.props.handleOnAddCustomers(id)
+    }
+
+    customerModalShow = (id) => (event) => {
+        event.preventDefault()
+        this.props.handleCustomerModalShow(id)
     }
 
     render() {
@@ -94,21 +99,18 @@ class Customers extends React.Component {
                                 <div className="customers-btn">
                                     <button
                                         onClick={this.CustomActive(id)}
-                                        className="customers-button"
-                                    >
+                                        className="customers-button">
                                         Edit
                                     </button>
                                     <button
                                         onClick={this.deleteCustomer(id)}
-                                        className="customers-button"
-                                    >
+                                        className="customers-button">
                                         Delete
                                     </button>
                                 </div>
-                            </div>
-                        }
+                            </div>}
                     </li>)
-            })
+            });
 
         return (
             <div className="customers">
@@ -116,26 +118,28 @@ class Customers extends React.Component {
                     {customers_list}
                 </ul>
                 <button
-                    // onClick={this.toggleModalProduct}
-                    onClick={this.addNewCustomers()}
-                >
+                    onClick={this.addNewCustomers()}>
                     Add new product
+                </button>
+                <button
+                    onClick={this.customerModalShow()}>
+                    Open Modal
                 </button>
             </div>
         )
     }
 }
 
-const mapStateToProps =({customers}) => {
-    return {customers}
+const mapStateToProps = ({ customers }) => {
+    return { customers }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        customersLoaded,
         handleOnDelCustomers: (id) => dispatch(onDeleteCustomers(id)),
         handleOnAddCustomers: (id) => dispatch(addNewCustomers(id)),
+        handleCustomerModalShow: (id) => dispatch(customerModalShow(id)),
     }
 };
 
-export default connect (mapStateToProps, mapDispatchToProps) (Customers)
+export default connect(mapStateToProps, mapDispatchToProps)(Customers)

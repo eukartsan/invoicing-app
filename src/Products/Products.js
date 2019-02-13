@@ -1,6 +1,6 @@
 import React from 'react'
 import './Products.css'
-import { productsLoaded, onDeleteProducts, onProductToInvoicing } from '../actions';
+import { addNewProducts, onDeleteProducts } from '../actions';
 import { connect } from 'react-redux';
 
 class Products extends React.Component {
@@ -8,12 +8,6 @@ class Products extends React.Component {
     deleteProduct = (id) => () => {
         this.props.handleOnDelProducts(id)
     };
-
-    addProductToInvoicing =  (id) => (event) => {
-        event.preventDefault();
-        this.props.handleOnProductToInvoicing(id)
-    }
-
 
     ProductsActive = (id) => (event) => {
         const { setProductsActive } = this.props
@@ -39,6 +33,11 @@ class Products extends React.Component {
     editProductUpdated = (id) => (event) => {
         const { editProductUpdated } = this.props
         editProductUpdated(event.target.value, id)
+    }
+
+    addNewProduct = (id) => (event) => {
+        event.preventDefault();
+        this.props.handleOnAddNewProduct(id)
     }
 
     render() {
@@ -105,27 +104,25 @@ class Products extends React.Component {
                 <ul>
                     {products_list}
                 </ul>
-                <div className="products-btn">
-                    <button onClick={this.addProductToInvoicing()}>
-                        Add
+                <div>
+                    <button onClick={this.addNewProduct()}>
+                        Add Product
                     </button>
                 </div>
             </div>
-
         )
     }
 }
 
-const mapStateToProps =({products}) => {
-    return {products}
+const mapStateToProps = ({ products }) => {
+    return { products }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        productsLoaded,
         handleOnDelProducts: (id) => dispatch(onDeleteProducts(id)),
-        handleOnProductToInvoicing: (id) => dispatch(onProductToInvoicing(id)),
+        handleOnAddNewProduct: (id) => dispatch(addNewProducts(id)),
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (Products)
+export default connect(mapStateToProps, mapDispatchToProps)(Products)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import AppHeader from './header/app-header'
-import { CustomersPage, ProductsPage, OperationsPage } from './pages'
+import { CustomersPage, ProductsPage, InvoiceDetails } from './pages'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default class App extends React.Component {
@@ -197,8 +197,8 @@ export default class App extends React.Component {
                             component={ProductsPage}
                         />
                         <Route
-                            path="/operations"
-                            component={OperationsPage}
+                            path="/invoices"
+                            component={InvoiceDetails}
                         />
                     </div>
                 </Router>

@@ -1,14 +1,14 @@
 import React from 'react'
-import './Operations.css'
+import './InvoiceDetails.css'
 import { connect } from 'react-redux';
-import { operationLoaded, onDeleteOperations } from '../actions';
+import { onDeleteInvoice, onNewInvoice } from '../actions';
 
 const invoicingItem = (value) =>
     <div className="invoicing-item">
         {value}
     </div>
 
-class Operations extends React.Component {
+class InvoiceDetails extends React.Component {
     constructor() {
         super()
 
@@ -34,16 +34,21 @@ class Operations extends React.Component {
     }
 
     deleteInvoicing = (id) => () => {
-        this.props.handleOnDelOperations(id)
+        this.props.handleOnDelInvoice(id)
+    }
+
+    addNewInvoice = (id) => (event) => {
+        event.preventDefault();
+        this.props.handleOnAddNewInvoice(id)
     }
 
 
     render() {
-        const { customers, products, invoicingTable } = this.props;
+        const { customers, products, Invoices } = this.props;
 
         const customersList = customers
             .map((item) => {
-                const { name } = item
+                const { name } = item;
 
                 return (
                     <option
@@ -52,7 +57,7 @@ class Operations extends React.Component {
                     </option>)
             })
 
-        const invoicingList = invoicingTable
+        const invoicingList = Invoices
             .map((invoicing) => {
                 const { name, price, id } = invoicing
                 return (
@@ -96,20 +101,25 @@ class Operations extends React.Component {
                 <button
                     onClick={this.addNewProduct}>Add
                 </button>
+                <div className="products-btn">
+                    <button onClick={this.addNewInvoice()}>
+                        Add
+                    </button>
+                </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ products, customers, invoicingTable }) => {
-    return { products, customers, invoicingTable }
+const mapStateToProps = ({ products, customers, Invoices }) => {
+    return { products, customers, Invoices }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        operationLoaded,
-        handleOnDelOperations: (id) => dispatch(onDeleteOperations(id)),
+        handleOnDelInvoice: (id) => dispatch(onDeleteInvoice(id)),
+        handleOnAddNewInvoice: (id) => dispatch(onNewInvoice(id)),
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Operations)
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceDetails)

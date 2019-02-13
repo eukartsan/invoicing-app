@@ -13,8 +13,8 @@ const AppHeader = () => {
                 <div className="header-block-item">Products</div>
             </Link>
 
-            <Link to="/operations">
-                <div className="header-block-item">Operations</div>
+            <Link to="/invoices">
+                <div className="header-block-item">Invoice</div>
             </Link>
         </div>
     );

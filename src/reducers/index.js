@@ -86,7 +86,7 @@ const initialState = {
             active: false
         },
     ],
-    invoicingTable: [
+    Invoices: [
         {
             name: 'Phone Holder',
             price: '9.99',
@@ -103,42 +103,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case 'ADD_CUSTOMERS':
-            return {
-                ...state,
-                customers: [],
-            };
-        case 'ADD_PRODUCTS':
-            return {
-                ...state,
-                products: [],
-            };
-        case 'ADD_OPERATION':
-            return {
-                ...state,
-                customers: [],
-                products: [],
-                invoicingTable: []
-            };
-        case 'DELETE_CUSTOMERS':
-            const customers = state.customers.filter((customer) => customer.id !== action.id);
-            return { ...state, customers };
-        case 'DELETE_PRODUCTS':
-            const products = state.products.filter((product) => product.id !== action.id);
-            return { ...state, products };
-        case 'DELETE_OPERATIONS':
-            const invoicingTable = state.invoicingTable.filter((invoicing) => invoicing.id !== action.id);
-            return { ...state, invoicingTable };
-        case 'PRODUCT_TO_INVOICING': {
-            const newInvoicing = {
-                name: 'Sherlock Holmes',
-                price: '20',
-                id: uuidv4()
-            };
-            const invoicingTable = [...state.invoicingTable, newInvoicing];
-            return { ...state, invoicingTable };
-        }
-        case 'ADD_NEW_CUSTOMERS': {
+        case 'ADD_NEW_CUSTOMER': {
             const customerItems = {
                 id: uuidv4(),
                 name: 'Sherlock Holmes',
@@ -149,6 +114,47 @@ const reducer = (state = initialState, action) => {
             const customers = [...state.customers, customerItems]
             return { ...state, customers }
         }
+        case 'ADD_NEW_INVOICE': {
+            const newInvoicing = {
+                name: 'Sherlock Holmes',
+                price: '20',
+                id: uuidv4()
+            };
+            const Invoices = [...state.Invoices, newInvoicing];
+            return { ...state, Invoices };
+        }
+        case 'ADD_NEW_PRODUCT': {
+            const newProduct = {
+                id: uuidv4(),
+                name: 'Rat Hat',
+                price: 50,
+                createdAt: '2018-12-28 15:15:52.702 +00:00',
+                updatedAt: '2018-12-28 15:15:52.702 +00:00',
+                active: false
+            };
+            const products = [...state.products, newProduct];
+            return { ...state, products };
+        }
+        case 'DELETE_CUSTOMER':
+            const customers = state.customers.filter((customer) => customer.id !== action.id);
+            return { ...state, customers };
+        case 'DELETE_PRODUCT':
+            const products = state.products.filter((product) => product.id !== action.id);
+            return { ...state, products };
+        case 'ADD_OPERATION':
+            return {
+                products: [],
+                Invoices: []
+            };
+        case 'DELETE_INVOICE':
+            const Invoices = state.Invoices.filter((invoicing) => invoicing.id !== action.id);
+            return { ...state, Invoices };
+
+        case 'CUSTOMER_MODAL_SHOW':
+            return {
+                ...state
+            }
+
         default:
             return state
     }

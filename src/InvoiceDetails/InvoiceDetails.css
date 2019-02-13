@@ -5,8 +5,9 @@
 
 .invoicing-item{
     border: 1px solid;
-    width: 150px;
     display: flex;
+    width: 300px;
+    padding: 10px;
     justify-content: space-around;
 }
 

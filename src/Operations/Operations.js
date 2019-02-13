@@ -1,7 +1,7 @@
 import React from 'react'
 import './Operations.css'
 import { connect } from 'react-redux';
-import { operationLoaded, onDeleteOperations} from '../actions';
+import { operationLoaded, onDeleteOperations } from '../actions';
 
 const invoicingItem = (value) =>
     <div className="invoicing-item">
@@ -39,7 +39,7 @@ class Operations extends React.Component {
 
 
     render() {
-        const { customers, products, invoicingTable } = this.props
+        const { customers, products, invoicingTable } = this.props;
 
         const customersList = customers
             .map((item) => {
@@ -60,8 +60,7 @@ class Operations extends React.Component {
                         {invoicingItem(name)}
                         {invoicingItem(price)}
                         <button
-                            onClick={this.deleteInvoicing(id)}
-                        >Delete
+                            onClick={this.deleteInvoicing(id)}>Delete
                         </button>
                     </div>
                 )
@@ -82,8 +81,7 @@ class Operations extends React.Component {
                 <label>Customer</label>
                 <select
                     onChange={this.selectCustomer}
-                    ref={elem => this.setCustomer = elem}
-                >
+                    ref={elem => this.setCustomer = elem}>
                     {customersList}
                 </select>
                 <div className="invoicing-container">
@@ -92,21 +90,19 @@ class Operations extends React.Component {
                 <label>Product to add</label>
                 <select
                     ref={elem => this.setProduct = elem}
-                    onChange={this.selectProduct}
-                >
+                    onChange={this.selectProduct}>
                     {productsList}
                 </select>
                 <button
-                    onClick={this.addNewProduct}
-                >Add
+                    onClick={this.addNewProduct}>Add
                 </button>
             </div>
         )
     }
 }
 
-const mapStateToProps =({products, customers, invoicingTable}) => {
-    return {products, customers, invoicingTable}
+const mapStateToProps = ({ products, customers, invoicingTable }) => {
+    return { products, customers, invoicingTable }
 };
 
 const mapDispatchToProps = dispatch => {
@@ -116,4 +112,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect (mapStateToProps, mapDispatchToProps) (Operations)
+export default connect(mapStateToProps, mapDispatchToProps)(Operations)

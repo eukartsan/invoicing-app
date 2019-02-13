@@ -51,7 +51,7 @@ class Customers extends React.Component {
 
     render() {
 
-        const { customers, addNewCustomers } = this.props;
+        const { customers } = this.props;
 
         const customers_list = customers
             .map((item) => {

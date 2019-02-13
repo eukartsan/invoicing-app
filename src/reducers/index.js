@@ -1,13 +1,14 @@
 import uuidv4 from 'uuid/v4'
 
 const initialState = {
-    customers: [{
-        id: uuidv4(),
-        name: 'Mark Benson',
-        address: '353 Rochester St, Rialto FL 43250',
-        phone: '555-534-2342',
-        active: false
-    },
+    customers: [
+        {
+            id: uuidv4(),
+            name: 'Mark Benson',
+            address: '353 Rochester St, Rialto FL 43250',
+            phone: '555-534-2342',
+            active: false
+        },
         {
             id: uuidv4(),
             name: 'Bob Smith',
@@ -43,8 +44,8 @@ const initialState = {
             phone: '555-534-1111',
             active: false
         }],
-    products:
-        [{
+    products: [
+        {
             id: uuidv4(),
             name: 'Parachute Pants',
             price: 29.99,
@@ -52,39 +53,39 @@ const initialState = {
             updatedAt: '2018-12-28 15:15:52.701 +00:00',
             active: false
         },
-            {
-                id: uuidv4(),
-                name: 'Phone Holder',
-                price: 9.99,
-                createdAt: '2018-12-28 15:15:52.701 +00:00',
-                updatedAt: '2018-12-28 15:15:52.701 +00:00',
-                active: false
-            },
-            {
-                id: uuidv4(),
-                name: 'Pet Rock',
-                price: 5.99,
-                createdAt: '2018-12-28 15:15:52.701 +00:00',
-                updatedAt: '2018-12-28 15:15:52.701 +00:00',
-                active: false
-            },
-            {
-                id: uuidv4(),
-                name: 'Egg Timer',
-                price: 15.99,
-                createdAt: '2018-12-28 15:15:52.702 +00:00',
-                updatedAt: '2018-12-28 15:15:52.702 +00:00',
-                active: false
-            },
-            {
-                id: uuidv4(),
-                name: 'Neon Green Hat',
-                price: 21.99,
-                createdAt: '2018-12-28 15:15:52.702 +00:00',
-                updatedAt: '2018-12-28 15:15:52.702 +00:00',
-                active: false
-            },
-        ],
+        {
+            id: uuidv4(),
+            name: 'Phone Holder',
+            price: 9.99,
+            createdAt: '2018-12-28 15:15:52.701 +00:00',
+            updatedAt: '2018-12-28 15:15:52.701 +00:00',
+            active: false
+        },
+        {
+            id: uuidv4(),
+            name: 'Pet Rock',
+            price: 5.99,
+            createdAt: '2018-12-28 15:15:52.701 +00:00',
+            updatedAt: '2018-12-28 15:15:52.701 +00:00',
+            active: false
+        },
+        {
+            id: uuidv4(),
+            name: 'Egg Timer',
+            price: 15.99,
+            createdAt: '2018-12-28 15:15:52.702 +00:00',
+            updatedAt: '2018-12-28 15:15:52.702 +00:00',
+            active: false
+        },
+        {
+            id: uuidv4(),
+            name: 'Neon Green Hat',
+            price: 21.99,
+            createdAt: '2018-12-28 15:15:52.702 +00:00',
+            updatedAt: '2018-12-28 15:15:52.702 +00:00',
+            active: false
+        },
+    ],
     invoicingTable: [
         {
             name: 'Phone Holder',
@@ -128,6 +129,15 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_OPERATIONS':
             const invoicingTable = state.invoicingTable.filter((invoicing) => invoicing.id !== action.id);
             return { ...state, invoicingTable };
+        case 'PRODUCT_TO_INVOICING': {
+            const newInvoicing = {
+                name: 'Sherlock Holmes',
+                price: '20',
+                id: uuidv4()
+            };
+            const invoicingTable = [...state.invoicingTable, newInvoicing];
+            return { ...state, invoicingTable };
+        }
         case 'ADD_NEW_CUSTOMERS': {
             const customerItems = {
                 id: uuidv4(),

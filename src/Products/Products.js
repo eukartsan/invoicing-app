@@ -1,6 +1,6 @@
 import React from 'react'
 import './Products.css'
-import { productsLoaded, onDeleteProducts } from '../actions';
+import { productsLoaded, onDeleteProducts, onProductToInvoicing } from '../actions';
 import { connect } from 'react-redux';
 
 class Products extends React.Component {
@@ -8,6 +8,12 @@ class Products extends React.Component {
     deleteProduct = (id) => () => {
         this.props.handleOnDelProducts(id)
     };
+
+    addProductToInvoicing =  (id) => (event) => {
+        event.preventDefault();
+        this.props.handleOnProductToInvoicing(id)
+    }
+
 
     ProductsActive = (id) => (event) => {
         const { setProductsActive } = this.props
@@ -99,7 +105,13 @@ class Products extends React.Component {
                 <ul>
                     {products_list}
                 </ul>
+                <div className="products-btn">
+                    <button onClick={this.addProductToInvoicing()}>
+                        Add
+                    </button>
+                </div>
             </div>
+
         )
     }
 }
@@ -112,6 +124,7 @@ const mapDispatchToProps = dispatch => {
     return {
         productsLoaded,
         handleOnDelProducts: (id) => dispatch(onDeleteProducts(id)),
+        handleOnProductToInvoicing: (id) => dispatch(onProductToInvoicing(id)),
     }
 }
 

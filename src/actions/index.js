@@ -29,6 +29,12 @@ const onDeleteProducts = (id) => ({
     id
 });
 
+const onProductToInvoicing = (id) => {
+    return {
+    type: 'PRODUCT_TO_INVOICING',
+    payload: id
+}};
+
 const onDeleteOperations = (id) => ({
     type: 'DELETE_OPERATIONS',
     id
@@ -48,5 +54,6 @@ export {
     onDeleteCustomers,
     onDeleteProducts,
     onDeleteOperations,
-    addNewCustomers
+    addNewCustomers,
+    onProductToInvoicing
 }

@@ -174,19 +174,20 @@ export default class App extends React.Component {
             <Fragment>
                 <Router>
                     <Fragment>
-                    <AppHeader />
-                    <Route
-                        path="/customers"
-                        component={Customers}
-                    />
-                    <Route
-                        path="/products"
-                        component={Products}
-                    />
-                    <Route
-                        path="/invoices"
-                        component={InvoiceDetails}
-                    />
+                        <AppHeader />
+                        <Route
+                            exact
+                            path="/"
+                            component={InvoiceDetails}
+                        />
+                        <Route
+                            path="/customers"
+                            component={Customers}
+                        />
+                        <Route
+                            path="/products"
+                            component={Products}
+                        />
                     </Fragment>
                 </Router>
             </Fragment>

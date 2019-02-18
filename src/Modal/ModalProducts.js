@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import './ModalProducts.css'
 import uuidv4 from 'uuid/v4'
 
-export default class ModalProducts extends React.Component {
+class ModalProducts extends React.Component {
     constructor() {
         super()
 
@@ -11,22 +11,24 @@ export default class ModalProducts extends React.Component {
             productsPrice: '',
             productsCreatedAt: '',
             productsDatedAt: '',
+            isOpenProduct: true
         }
     }
+
     handleName = (event) => {
-        this.setState({productsName: event.target.value})
+        this.setState({ productsName: event.target.value })
     }
 
     handlePrice = (event) => {
-        this.setState({productsPrice: event.target.value})
+        this.setState({ productsPrice: event.target.value })
     }
 
     handleCreatedAt = (event) => {
-        this.setState({productsCreatedAt: event.target.value})
+        this.setState({ productsCreatedAt: event.target.value })
     }
 
     handleDatedAt = (event) => {
-        this.setState({productsDatedAt: event.target.value})
+        this.setState({ productsDatedAt: event.target.value })
     }
 
     addProducts = (event) => {
@@ -40,14 +42,19 @@ export default class ModalProducts extends React.Component {
         this.setState({ productsName: '', productsPrice: '', productsCreatedAt: '', productsDatedAt: '' })
     }
 
+    toggleModalProduct = () => {
+        this.setState({
+            isOpenProduct: !this.state.isOpenProduct
+        })
+    }
+
     render() {
+
+        const { isOpenProduct } = this.state;
+
         const { productsName, productsPrice, productsCreatedAt, productsDatedAt } = this.state
 
-        if(!this.props.show) {
-            return null
-        }
-
-        return (
+        const Modal = isOpenProduct ?
             <div className="backdropStyle">
                 <div className="modalStyle">
                     <Fragment>
@@ -57,7 +64,9 @@ export default class ModalProducts extends React.Component {
                                 className="modalInput"
                                 name="productsName"
                                 value={productsName}
-                                ref={(input)=>{this.productsName = input}}
+                                ref={(input) => {
+                                    this.productsName = input
+                                }}
                                 onChange={this.handleName}
                             />
                             <p>Price:</p>
@@ -65,7 +74,9 @@ export default class ModalProducts extends React.Component {
                                 className="modalInput"
                                 name="productsPrice"
                                 value={productsPrice}
-                                ref={(input)=>{this.productsPrice = input}}
+                                ref={(input) => {
+                                    this.productsPrice = input
+                                }}
                                 onChange={this.handlePrice}
                             />
                             <p>Created At:</p>
@@ -73,7 +84,9 @@ export default class ModalProducts extends React.Component {
                                 className="modalInput"
                                 name="productsCreatedAt"
                                 value={productsCreatedAt}
-                                ref={(input)=>{this.productsCreatedAt = input}}
+                                ref={(input) => {
+                                    this.productsCreatedAt = input
+                                }}
                                 onChange={this.handleCreatedAt}
                             />
                             <p>Dated At:</p>
@@ -81,20 +94,29 @@ export default class ModalProducts extends React.Component {
                                 className="modalInput"
                                 name="productsDatedAt"
                                 value={productsDatedAt}
-                                ref={(input)=>{this.productsDatedAt = input}}
+                                ref={(input) => {
+                                    this.productsDatedAt = input
+                                }}
                                 onChange={this.handleDatedAt}
                             />
                             <input
                                 type="submit"
-                                value="Add"/>
+                                value="Add" />
                         </form>
                     </Fragment>
-                    <button onClick={this.props.onClose}>
+                    <button onClick={this.toggleModalProduct}>
                         Close
                     </button>
                 </div>
+            </div> :
+            null;
+
+        return (
+            <div>
+                {Modal}
             </div>
         )
     }
-
 }
+
+export default ModalProducts

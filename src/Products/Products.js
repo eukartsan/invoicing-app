@@ -2,8 +2,16 @@ import React from 'react'
 import './Products.css'
 import { addNewProducts, onDeleteProducts } from '../actions';
 import { connect } from 'react-redux';
+import ModalProducts from "../Modal/ModalProducts";
 
 class Products extends React.Component {
+    constructor() {
+        super()
+
+        this.state = {
+            isOpenProduct: false
+        };
+    }
 
     deleteProduct = (id) => () => {
         this.props.handleOnDelProducts(id)
@@ -38,6 +46,12 @@ class Products extends React.Component {
     addNewProduct = (id) => (event) => {
         event.preventDefault();
         this.props.handleOnAddNewProduct(id)
+    }
+
+    toggleModalProduct = () => {
+        this.setState({
+            isOpenProduct: !this.state.isOpenProduct
+        })
     }
 
     render() {
@@ -99,6 +113,14 @@ class Products extends React.Component {
                 )
             });
 
+        const { isOpenProduct } = this.state;
+
+        const Modal = isOpenProduct ?
+            <div>
+                <ModalProducts />
+            </div> :
+            null;
+
         return (
             <div className="products">
                 <ul>
@@ -107,6 +129,11 @@ class Products extends React.Component {
                 <button onClick={this.addNewProduct()}>
                     Add Product
                 </button>
+                <button
+                    onClick={this.toggleModalProduct}>
+                    Open Modal
+                </button>
+                {Modal}
             </div>
         )
     }

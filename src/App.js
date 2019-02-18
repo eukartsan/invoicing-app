@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import AppHeader from './header/app-header'
-import { CustomersPage, ProductsPage, InvoiceDetails } from './pages'
+import Customers from './Customers/Customers'
+import Products from './Products/Products'
+import InvoiceDetails from './InvoiceDetails/InvoiceDetails'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default class App extends React.Component {
@@ -22,21 +24,6 @@ export default class App extends React.Component {
 
     selectProduct = (event) => {
         this.setState({ productName: event.target.value })
-    }
-
-    NewInvoicing = (name, price, id) => {
-        this.setState((prevState) => {
-            const Invoicing = {
-                name,
-                price,
-                id,
-            }
-
-            return {
-                invoicingTable: [...prevState.invoicingTable, Invoicing]
-            }
-
-        })
     }
 
     toggleModalCustom = () => {
@@ -184,53 +171,25 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div>
+            <Fragment>
                 <Router>
-                    <div>
-                        <AppHeader />
-                        <Route
-                            path="/customers"
-                            component={CustomersPage}
-                        />
-                        <Route
-                            path="/products"
-                            component={ProductsPage}
-                        />
-                        <Route
-                            path="/invoices"
-                            component={InvoiceDetails}
-                        />
-                    </div>
+                    <Fragment>
+                    <AppHeader />
+                    <Route
+                        path="/customers"
+                        component={Customers}
+                    />
+                    <Route
+                        path="/products"
+                        component={Products}
+                    />
+                    <Route
+                        path="/invoices"
+                        component={InvoiceDetails}
+                    />
+                    </Fragment>
                 </Router>
-                {/*<Products*/}
-                    {/*products={products}*/}
-                    {/*onDeleted={this.deleteProduct}*/}
-                    {/*setProductsActive={this.setProductsActive}*/}
-                    {/*editProductName={this.editProduct}*/}
-                    {/*editProductPrice={this.editProductPrice}*/}
-                    {/*editProductCreated={this.editProductCreated}*/}
-                    {/*editProductUpdated={this.editProductUpdated}*/}
-                {/*/>*/}
-                <div>
-                    {/*<button onClick={this.toggleModalProduct}>*/}
-                        {/*Add new product*/}
-                    {/*</button>*/}
-                    {/*<ModalProducts*/}
-                        {/*show={this.state.isOpenProduct}*/}
-                        {/*onClose={this.toggleModalProduct}*/}
-                        {/*addCustomer={this.addProduct}>*/}
-                    {/*</ModalProducts>*/}
-                    {/*<Operations*/}
-                        {/*customers={customers}*/}
-                        {/*products={products}*/}
-                        {/*onDeleted={this.deleteInvoicing}*/}
-                        {/*invoicingTable={invoicingTable}*/}
-                        {/*setCustomer={this.selectCustomer}*/}
-                        {/*setProduct={this.selectProduct}*/}
-                        {/*onNewInvoicing={this.NewInvoicing}*/}
-                    {/*/>*/}
-                </div>
-            </div>
+            </Fragment>
         )
     }
 }

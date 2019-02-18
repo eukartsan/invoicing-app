@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import { onDeleteInvoice, onNewInvoice } from '../actions';
@@ -82,7 +82,7 @@ class InvoiceDetails extends React.Component {
             })
 
         return (
-            <div>
+            <Fragment>
                 <label>Customer</label>
                 <select
                     onChange={this.selectCustomer}
@@ -106,7 +106,7 @@ class InvoiceDetails extends React.Component {
                         Add
                     </button>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }

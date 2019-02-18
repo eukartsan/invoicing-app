@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import './ModalCustomers.css'
 import uuidv4 from 'uuid/v4'
 
@@ -9,20 +9,21 @@ class ModalCustomers extends React.Component {
         this.state = {
             customerName: '',
             customerAddress: '',
-            customerPhone: ''
+            customerPhone: '',
+            isOpenCustomer: true
         }
     }
 
     handleName = (event) => {
-        this.setState({customerName: event.target.value})
+        this.setState({ customerName: event.target.value })
     }
 
     handleAddress = (event) => {
-        this.setState({customerAddress: event.target.value})
+        this.setState({ customerAddress: event.target.value })
     }
 
     handlePhone = (event) => {
-        this.setState({customerPhone: event.target.value})
+        this.setState({ customerPhone: event.target.value })
     }
 
     addCustomers = (event) => {
@@ -35,24 +36,31 @@ class ModalCustomers extends React.Component {
         this.setState({ customerName: '', customerAddress: '', customerPhone: '' })
     }
 
+    toggleModalCustomer = () => {
+        this.setState({
+            isOpenCustomer: !this.state.isOpenCustomer
+        })
+    }
+
     render() {
+
+        const { isOpenCustomer } = this.state;
+
         const { customerName, customerAddress, customerPhone } = this.props
 
-        if(!this.props.show) {
-            return null
-        }
-
-        return (
+        const Modal = isOpenCustomer ?
             <div className="backdropStyle">
                 <div className="modalStyle">
-                    <div>
+                    <Fragment>
                         <form onSubmit={this.addCustomers}>
                             <p>Name:</p>
                             <input
                                 className="modalInput"
                                 name="customersName"
                                 value={customerName}
-                                ref={(input)=>{this.customerName = input}}
+                                ref={(input) => {
+                                    this.customerName = input
+                                }}
                                 onChange={this.handleName}
                             />
                             <p>Address:</p>
@@ -60,7 +68,9 @@ class ModalCustomers extends React.Component {
                                 className="modalInput"
                                 name="customersAddress"
                                 value={customerAddress}
-                                ref={(input)=>{this.customerAddress = input}}
+                                ref={(input) => {
+                                    this.customerAddress = input
+                                }}
                                 onChange={this.handleAddress}
                             />
                             <p>Phone:</p>
@@ -68,18 +78,28 @@ class ModalCustomers extends React.Component {
                                 className="modalInput"
                                 name="customersPhone"
                                 value={customerPhone}
-                                ref={(input)=>{this.customerPhone = input}}
+                                ref={(input) => {
+                                    this.customerPhone = input
+                                }}
                                 onChange={this.handlePhone}
                             />
-                            <input
-                                type="submit"
-                                value="Add"/>
+                            <input type="submit" value="Add" />
                         </form>
-                    </div>
-                        <button onClick={this.props.onClose}>
-                            Close
-                        </button>
+                    </Fragment>
+                    <button onClick={this.toggleModalCustomer}>
+                        Close
+                    </button>
                 </div>
+            </div> :
+            null;
+
+        // if(!this.props.show) {
+        //     return null
+        // }
+
+        return (
+            <div>
+                {Modal}
             </div>
         )
     }

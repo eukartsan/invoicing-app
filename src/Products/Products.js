@@ -104,11 +104,9 @@ class Products extends React.Component {
                 <ul>
                     {products_list}
                 </ul>
-                <div>
-                    <button onClick={this.addNewProduct()}>
-                        Add Product
-                    </button>
-                </div>
+                <button onClick={this.addNewProduct()}>
+                    Add Product
+                </button>
             </div>
         )
     }

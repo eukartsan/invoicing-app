@@ -3,13 +3,15 @@ import './Customers.css'
 
 import { connect } from 'react-redux'
 import { onDeleteCustomers, addNewCustomers, customerModalShow } from '../actions'
+import ModalCustomers from "../Modal/ModalCustomers";
+
 
 class Customers extends React.Component {
     constructor() {
         super()
 
         this.state = {
-            isOpenProduct: false
+            isOpenCustomer: false
         };
     }
 
@@ -38,9 +40,9 @@ class Customers extends React.Component {
         setCustomActive(id)
     }
 
-    toggleModalProduct = () => {
+    toggleModalCustomer = () => {
         this.setState({
-            isOpenProduct: !this.state.isOpenProduct
+            isOpenCustomer: !this.state.isOpenCustomer
         })
     }
 
@@ -54,6 +56,7 @@ class Customers extends React.Component {
         this.props.handleCustomerModalShow(id)
     }
 
+
     render() {
 
         const { customers } = this.props;
@@ -62,8 +65,8 @@ class Customers extends React.Component {
             .map((item) => {
                 const { id, name, address, phone, active } = item
                 return (
-                    <li key={id}>
-                        {active
+                    <li key={id}>{
+                        active
                             ? <div className="customers-items">
                                 <input
                                     className="customers-name"
@@ -112,6 +115,14 @@ class Customers extends React.Component {
                     </li>)
             });
 
+        const { isOpenCustomer } = this.state;
+
+        const Modal = isOpenCustomer ?
+            <div>
+                <ModalCustomers />
+            </div> :
+            null;
+
         return (
             <div className="customers">
                 <ul>
@@ -119,19 +130,20 @@ class Customers extends React.Component {
                 </ul>
                 <button
                     onClick={this.addNewCustomers()}>
-                    Add new product
+                    Add new customer
                 </button>
                 <button
-                    onClick={this.customerModalShow()}>
+                    onClick={this.toggleModalCustomer}>
                     Open Modal
                 </button>
+                {Modal}
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ customers }) => {
-    return { customers }
+const mapStateToProps = ({ customers, modalType }) => {
+    return { customers, modalType }
 };
 
 const mapDispatchToProps = dispatch => {

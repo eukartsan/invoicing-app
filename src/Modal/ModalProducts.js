@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import './ModalProducts.css'
 import uuidv4 from 'uuid/v4'
 
@@ -50,7 +50,7 @@ export default class ModalProducts extends React.Component {
         return (
             <div className="backdropStyle">
                 <div className="modalStyle">
-                    <div>
+                    <Fragment>
                         <form onSubmit={this.addProducts}>
                             <p>Name:</p>
                             <input
@@ -88,7 +88,7 @@ export default class ModalProducts extends React.Component {
                                 type="submit"
                                 value="Add"/>
                         </form>
-                    </div>
+                    </Fragment>
                     <button onClick={this.props.onClose}>
                         Close
                     </button>

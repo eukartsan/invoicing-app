@@ -1,4 +1,4 @@
-import {ADD_NEW_PRODUCT, ADD_NEW_CUSTOMER, CUSTOMER_MODAL_SHOW, DELETE_CUSTOMER, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
+import {ADD_NEW_PRODUCT, CUSTOMER_MODAL_HIDE, ADD_NEW_CUSTOMER, CUSTOMER_MODAL_SHOW, DELETE_CUSTOMER, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
 
 const addNewCustomers = (id) => {
     return {
@@ -35,10 +35,18 @@ const onDeleteInvoice = (id) => ({
     id
 });
 
-const customerModalShow = (id) => ({
-    type: CUSTOMER_MODAL_SHOW,
-    id
-});
+const customerModalShow = () => {
+    return {
+        type: CUSTOMER_MODAL_SHOW,
+    }
+};
+
+const customerModalHide = () => {
+    return {
+        type: CUSTOMER_MODAL_HIDE
+    };
+}
+
 
 export {
     addNewProducts,
@@ -47,5 +55,6 @@ export {
     onDeleteInvoice,
     addNewCustomers,
     onNewInvoice,
-    customerModalShow
+    customerModalShow,
+    customerModalHide
 }

@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4'
 
 const initialState = {
+    modalType: null,
     customers: [
         {
             id: uuidv4(),
@@ -141,20 +142,18 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_PRODUCT':
             const products = state.products.filter((product) => product.id !== action.id);
             return { ...state, products };
-        case 'ADD_OPERATION':
-            return {
-                products: [],
-                Invoices: []
-            };
         case 'DELETE_INVOICE':
             const Invoices = state.Invoices.filter((invoicing) => invoicing.id !== action.id);
             return { ...state, Invoices };
 
         case 'CUSTOMER_MODAL_SHOW':
             return {
-                ...state
-            }
-
+                modalType: true
+            };
+        case 'CUSTOMER_MODAL_HIDE':
+            return {
+                modalType: false
+            };
         default:
             return state
     }

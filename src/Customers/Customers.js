@@ -2,9 +2,8 @@ import React from 'react'
 import './Customers.css'
 
 import { connect } from 'react-redux'
-import { onDeleteCustomers, addNewCustomers, customerModalShow } from '../actions'
+import { onDeleteCustomers, addNewCustomers } from '../actions'
 import ModalCustomers from "../Modal/ModalCustomers";
-
 
 class Customers extends React.Component {
     constructor() {
@@ -47,15 +46,9 @@ class Customers extends React.Component {
     }
 
     addNewCustomers = (id) => (event) => {
-        event.preventDefault()
+        event.preventDefault();
         this.props.handleOnAddCustomers(id)
     }
-
-    customerModalShow = (id) => (event) => {
-        event.preventDefault()
-        this.props.handleCustomerModalShow(id)
-    }
-
 
     render() {
 
@@ -142,15 +135,14 @@ class Customers extends React.Component {
     }
 }
 
-const mapStateToProps = ({ customers, modalType }) => {
-    return { customers, modalType }
+const mapStateToProps = ({ customers }) => {
+    return { customers }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         handleOnDelCustomers: (id) => dispatch(onDeleteCustomers(id)),
         handleOnAddCustomers: (id) => dispatch(addNewCustomers(id)),
-        handleCustomerModalShow: (id) => dispatch(customerModalShow(id)),
     }
 };
 

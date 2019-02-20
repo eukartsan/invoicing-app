@@ -1,19 +1,5 @@
+import initialState from './initialState'
 import uuidv4 from 'uuid/v4'
-
-const initialState = {
-    Invoices: [
-        {
-            name: 'Phone Holder',
-            price: '9.99',
-            id: uuidv4(),
-        },
-        {
-            name: 'Pet Rock',
-            price: '5.99',
-            id: uuidv4(),
-        },
-    ]
-};
 
 const invoices = (state = initialState, action) => {
     switch (action.type) {
@@ -23,12 +9,12 @@ const invoices = (state = initialState, action) => {
                 price: '20',
                 id: uuidv4()
             };
-            const Invoices = [...state.Invoices, newInvoicing];
-            return { ...state, Invoices };
+            const Invoices = [...state, newInvoicing];
+            return { ...state.Invoices, Invoices };
         }
         case 'DELETE_INVOICE':
-            const Invoices = state.Invoices.filter((invoicing) => invoicing.id !== action.id);
-            return { ...state, Invoices };
+            const Invoices = state.filter((invoicing) => invoicing.id !== action.id);
+            return { ...state.Invoices, Invoices };
         default:
             return state.Invoices
     }

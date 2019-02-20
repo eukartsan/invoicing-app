@@ -14,11 +14,10 @@ const addNewProducts = (id) => {
     }
 };
 
-const onNewInvoice = (id) => {
-    return {
+const onNewInvoice = (id) => ({
     type: ADD_NEW_INVOICE,
-    payload: id
-}};
+    id
+});
 
 const onDeleteCustomers = (id) => ({
     type: DELETE_CUSTOMER,

@@ -3,8 +3,10 @@ import products from './products'
 import Invoices from './invoices'
 import {combineReducers} from 'redux'
 
-export default combineReducers({
+const rootReducer = combineReducers({
     customers,
     products,
     Invoices
 })
+
+export default rootReducer

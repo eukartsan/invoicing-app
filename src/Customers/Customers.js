@@ -46,7 +46,7 @@ class Customers extends React.Component {
     }
 
     addNewCustomers = (id) => (event) => {
-        event.preventDefault();
+        event.preventDefault()
         this.props.handleOnAddCustomers(id)
     }
 
@@ -135,7 +135,7 @@ class Customers extends React.Component {
     }
 }
 
-const mapStateToProps = ({ customers }) => {
+const mapStateToProps = ({customers}) => {
     return { customers }
 };
 

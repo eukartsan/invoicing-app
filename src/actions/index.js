@@ -1,9 +1,9 @@
 import {ADD_NEW_PRODUCT, ADD_NEW_CUSTOMER, DELETE_CUSTOMER, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
 
-const addNewCustomers = (id) => {
+export const addNewCustomers = (id) => {
     return {
         type: ADD_NEW_CUSTOMER,
-        payload: id
+        id
     };
 };
 
@@ -39,6 +39,5 @@ export {
     onDeleteCustomers,
     onDeleteProducts,
     onDeleteInvoice,
-    addNewCustomers,
     onNewInvoice,
 }

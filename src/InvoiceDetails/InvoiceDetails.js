@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import { onDeleteInvoice, onNewInvoice } from '../actions';
@@ -44,7 +44,7 @@ class InvoiceDetails extends React.Component {
 
 
     render() {
-        const { customers, products, Invoices } = this.props;
+        const { customers, products, invoices } = this.props;
 
         const customersList = customers
             .map((item) => {
@@ -57,7 +57,7 @@ class InvoiceDetails extends React.Component {
                     </option>)
             })
 
-        const invoicingList = Invoices
+        const invoicingList = invoices
             .map((invoicing) => {
                 const { name, price, id } = invoicing
                 return (
@@ -82,7 +82,8 @@ class InvoiceDetails extends React.Component {
             })
 
         return (
-            <Fragment>
+            <div className="invoicing">
+                <h1>Invoice</h1>
                 <label>Customer</label>
                 <select
                     onChange={this.selectCustomer}
@@ -106,13 +107,13 @@ class InvoiceDetails extends React.Component {
                         Add
                     </button>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }
 
-const mapStateToProps = ({ products, customers, Invoices }) => {
-    return { products, customers, Invoices }
+const mapStateToProps = ({ products, customers, invoices }) => {
+    return { products, customers, invoices }
 };
 
 const mapDispatchToProps = dispatch => {

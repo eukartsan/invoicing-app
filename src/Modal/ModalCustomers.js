@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import './ModalCustomers.css'
 import uuidv4 from 'uuid/v4'
+import { connect } from 'react-redux'
+import { addNewCustomers} from "../actions";
 
 class ModalCustomers extends React.Component {
     constructor() {
@@ -26,14 +28,13 @@ class ModalCustomers extends React.Component {
         this.setState({ customerPhone: event.target.value })
     }
 
-    addCustomers = (event) => {
+    addNewCustomers = (event) => {
         const { addCustomer } = this.props
         event.preventDefault()
         const newCustomerName = this.customerName.value
         const newCustomerAddress = this.customerAddress.value
         const newCustomerPhone = this.customerPhone.value
         addCustomer(uuidv4(), newCustomerName, newCustomerAddress, newCustomerPhone)
-        this.setState({ customerName: '', customerAddress: '', customerPhone: '' })
     }
 
     toggleModalCustomer = () => {
@@ -52,7 +53,7 @@ class ModalCustomers extends React.Component {
             <div className="backdropStyle">
                 <div className="modalStyle">
                     <Fragment>
-                        <form onSubmit={this.addCustomers}>
+                        <form onSubmit={this.addNewCustomers}>
                             <p>Name:</p>
                             <input
                                 className="modalInput"
@@ -93,10 +94,6 @@ class ModalCustomers extends React.Component {
             </div> :
             null;
 
-        // if(!this.props.show) {
-        //     return null
-        // }
-
         return (
             <div>
                 {Modal}
@@ -105,4 +102,10 @@ class ModalCustomers extends React.Component {
     }
 }
 
-export default ModalCustomers
+const mapDispatchToProps = dispatch => {
+    return {
+        addCustomer: (id, name, address, phone) => dispatch(addNewCustomers(id, name, address, phone)),
+    }
+};
+
+export default connect(null, mapDispatchToProps)(ModalCustomers)

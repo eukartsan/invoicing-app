@@ -14,3 +14,7 @@
 .invoicing-block-item{
     display: flex;
 }
+
+.invoicing h1 {
+    text-align: center;
+}

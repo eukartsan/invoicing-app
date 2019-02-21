@@ -86,7 +86,7 @@ const initialState = {
             active: false
         },
     ],
-    Invoices: [
+    invoices: [
         {
             name: 'Phone Holder',
             price: '9.99',

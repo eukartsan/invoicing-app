@@ -6,10 +6,10 @@ const products = (state = initialState.products, action) => {
         case 'ADD_NEW_PRODUCT': {
             const newProduct = {
                 id: uuidv4(),
-                name: 'Rat Hat',
-                price: 50,
-                createdAt: '2018-12-28 15:15:52.702 +00:00',
-                updatedAt: '2018-12-28 15:15:52.702 +00:00',
+                name: action.name,
+                price: action.price,
+                createdAt: action.createdAt,
+                updatedAt: action.updatedAt,
                 active: false
             };
             return [ ...state, newProduct ];
@@ -21,6 +21,5 @@ const products = (state = initialState.products, action) => {
             return state
     }
 };
-
 
 export default products

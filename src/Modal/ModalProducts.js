@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import './ModalProducts.css'
 import uuidv4 from 'uuid/v4'
+import { addNewProducts } from "../actions";
+import { connect } from "react-redux";
 
 class ModalProducts extends React.Component {
     constructor() {
@@ -31,15 +33,14 @@ class ModalProducts extends React.Component {
         this.setState({ productsDatedAt: event.target.value })
     }
 
-    addProducts = (event) => {
-        const { addCustomer } = this.props
+    addNewProducts = (event) => {
+        const { addProduct } = this.props
         event.preventDefault()
         const newProductName = this.productsName.value
         const newProductPrice = this.productsPrice.value
         const newProductCreatedAt = this.productsCreatedAt.value
         const newProductDatedAt = this.productsDatedAt.value
-        addCustomer(uuidv4(), newProductName, newProductPrice, newProductCreatedAt, newProductDatedAt)
-        this.setState({ productsName: '', productsPrice: '', productsCreatedAt: '', productsDatedAt: '' })
+        addProduct(uuidv4(), newProductName, newProductPrice, newProductCreatedAt, newProductDatedAt)
     }
 
     toggleModalProduct = () => {
@@ -52,13 +53,13 @@ class ModalProducts extends React.Component {
 
         const { isOpenProduct } = this.state;
 
-        const { productsName, productsPrice, productsCreatedAt, productsDatedAt } = this.state
+        const { productsName, productsPrice, productsCreatedAt, productsDatedAt } = this.props
 
         const Modal = isOpenProduct ?
             <div className="backdropStyle">
                 <div className="modalStyle">
                     <Fragment>
-                        <form onSubmit={this.addProducts}>
+                        <form onSubmit={this.addNewProducts}>
                             <p>Name:</p>
                             <input
                                 className="modalInput"
@@ -119,4 +120,10 @@ class ModalProducts extends React.Component {
     }
 }
 
-export default ModalProducts
+const mapDispatchToProps = dispatch => {
+    return {
+        addProduct: (id, name, createdAt, updatedAt) => dispatch(addNewProducts(id, name, createdAt, updatedAt)),
+    }
+};
+
+export default connect(null, mapDispatchToProps)(ModalProducts)

@@ -6,13 +6,12 @@ const customers = (state = initialState.customers, action) => {
         case 'ADD_NEW_CUSTOMER':
             const customerItems = {
                 id: uuidv4(),
-                name: 'Sherlock Holmes',
-                address: '221B Baker Street',
-                phone: '012-345-6789',
+                name: action.name,
+                address: action.address,
+                phone: action.phone,
                 active: false
             };
             return [...state, customerItems]
-
         case 'DELETE_CUSTOMER':
             const customers = state.filter((customer) => customer.id !== action.id);
             return { ...state, customers };

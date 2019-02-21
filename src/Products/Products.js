@@ -123,15 +123,12 @@ class Products extends React.Component {
 
         return (
             <div className="products">
+                <h1>Products</h1>
                 <ul>
                     {products_list}
                 </ul>
-                <button onClick={this.addNewProduct()}>
+                <button onClick={this.toggleModalProduct}>
                     Add Product
-                </button>
-                <button
-                    onClick={this.toggleModalProduct}>
-                    Open Modal
                 </button>
                 {Modal}
             </div>

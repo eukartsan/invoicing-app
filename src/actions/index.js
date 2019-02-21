@@ -1,16 +1,22 @@
 import {ADD_NEW_PRODUCT, ADD_NEW_CUSTOMER, DELETE_CUSTOMER, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
 
-export const addNewCustomers = (id) => {
+export const addNewCustomers = (id, name, address, phone) => {
     return {
         type: ADD_NEW_CUSTOMER,
-        id
+        id,
+        name,
+        address,
+        phone
     };
 };
 
-const addNewProducts = (id) => {
+const addNewProducts = (id, name, createdAt, updatedAt) => {
     return {
         type: ADD_NEW_PRODUCT,
-        payload: id,
+        id,
+        name,
+        createdAt,
+        updatedAt
     }
 };
 

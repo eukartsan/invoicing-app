@@ -112,22 +112,21 @@ class Customers extends React.Component {
 
         const Modal = isOpenCustomer ?
             <div>
-                <ModalCustomers />
+                <ModalCustomers
+                />
             </div> :
             null;
 
         return (
+
             <div className="customers">
+                <h1>Customers</h1>
                 <ul>
                     {customers_list}
                 </ul>
                 <button
-                    onClick={this.addNewCustomers()}>
-                    Add new customer
-                </button>
-                <button
                     onClick={this.toggleModalCustomer}>
-                    Open Modal
+                    Add new customer
                 </button>
                 {Modal}
             </div>

@@ -18,3 +18,7 @@
 .invoicing h1 {
     text-align: center;
 }
+
+.invoicing-items{
+    margin: 10px;
+}

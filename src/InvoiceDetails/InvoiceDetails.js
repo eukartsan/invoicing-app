@@ -83,16 +83,19 @@ class InvoiceDetails extends React.Component {
 
         return (
             <div className="invoicing">
-                <h1>Invoice</h1>
+                <div className="invoicing-items">
+                <h1>Invoice Details</h1>
                 <label>Customer</label>
                 <select
                     onChange={this.selectCustomer}
                     ref={elem => this.setCustomer = elem}>
                     {customersList}
                 </select>
-                <div className="invoicing-container">
-                    {invoicingList}
+                <button
+                    onClick={this.addNewProduct}>Select
+                </button>
                 </div>
+                <div className="invoicing-items">
                 <label>Product to add</label>
                 <select
                     ref={elem => this.setProduct = elem}
@@ -100,11 +103,23 @@ class InvoiceDetails extends React.Component {
                     {productsList}
                 </select>
                 <button
-                    onClick={this.addNewProduct}>Add
+                    onClick={this.addNewProduct}>Select
                 </button>
+                </div>
+                <div className="invoicing-container">
+                    {invoicingList}
+                </div>
                 <div className="products-btn">
                     <button onClick={this.addNewInvoice()}>
                         Add
+                    </button>
+                </div>
+                <div>
+                    <button>
+                        Save
+                    </button>
+                    <button>
+                        Cancel
                     </button>
                 </div>
             </div>

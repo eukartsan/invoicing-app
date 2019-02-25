@@ -1,7 +1,7 @@
 import initialState from './initialState'
 import uuidv4 from 'uuid/v4'
 
-const invoices = (state = initialState.invoices, action) => {
+const invoices = (state = initialState.invoice_details, action) => {
     switch (action.type) {
         case 'ADD_NEW_INVOICE': {
             const newInvoicing = {

@@ -86,7 +86,7 @@ const initialState = {
             active: false
         },
     ],
-    invoices: [
+    invoice_details: [
         {
             name: 'Phone Holder',
             price: '9.99',
@@ -96,6 +96,26 @@ const initialState = {
             name: 'Pet Rock',
             price: '5.99',
             id: uuidv4(),
+        },
+    ],
+    invoices: [
+        {
+            id: uuidv4(),
+            name: 'Bob Smith',
+            discount: '10%',
+            total: 400,
+        },
+        {
+            id: uuidv4(),
+            name: 'Mark Benson',
+            discount: '10%',
+            total: 760,
+        },
+        {
+            id: uuidv4(),
+            name: 'John Draper',
+            discount: '15%',
+            total: 1400,
         },
     ]
 }

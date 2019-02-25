@@ -2,6 +2,7 @@ import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import { onDeleteInvoice, onNewInvoice } from '../actions';
+import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
     <div className="invoicing-item">
@@ -94,6 +95,8 @@ class InvoiceDetails extends React.Component {
         return (
             <div className="invoicing">
                 <div className="invoicing-items">
+                    <h1>Invoices</h1>
+                    <Invoices/>
                     <h1>Invoice Details</h1>
                     <label>Customer</label>
                     <select

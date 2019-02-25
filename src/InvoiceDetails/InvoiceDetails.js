@@ -13,7 +13,8 @@ class InvoiceDetails extends React.Component {
         super()
 
         this.state = {
-            price: ''
+            price: '',
+            discount: '',
         }
     }
 
@@ -42,9 +43,18 @@ class InvoiceDetails extends React.Component {
         this.props.handleOnAddNewInvoice(id)
     }
 
+    changeDiscount = (event) => {
+        if (/^(100|[1-9]|[1-9][0-9])$/.test(event.target.value)) {
+            this.setState({
+                discount: parseInt(event.target.value, 10)
+            })
+        }
+    }
+
 
     render() {
         const { customers, products, invoices } = this.props;
+        const { discount } = this.state;
 
         const customersList = customers
             .map((item) => {
@@ -84,30 +94,40 @@ class InvoiceDetails extends React.Component {
         return (
             <div className="invoicing">
                 <div className="invoicing-items">
-                <h1>Invoice Details</h1>
-                <label>Customer</label>
-                <select
-                    onChange={this.selectCustomer}
-                    ref={elem => this.setCustomer = elem}>
-                    {customersList}
-                </select>
-                <button
-                    onClick={this.addNewProduct}>Select
-                </button>
+                    <h1>Invoice Details</h1>
+                    <label>Customer</label>
+                    <select
+                        onChange={this.selectCustomer}
+                        ref={elem => this.setCustomer = elem}>
+                        {customersList}
+                    </select>
+                    <button
+                        onClick={this.addNewProduct}>Select
+                    </button>
                 </div>
                 <div className="invoicing-items">
-                <label>Product to add</label>
-                <select
-                    ref={elem => this.setProduct = elem}
-                    onChange={this.selectProduct}>
-                    {productsList}
-                </select>
-                <button
-                    onClick={this.addNewProduct}>Select
-                </button>
+                    <label>Product to add</label>
+                    <select
+                        ref={elem => this.setProduct = elem}
+                        onChange={this.selectProduct}>
+                        {productsList}
+                    </select>
+                    <button
+                        onClick={this.addNewProduct}>Select
+                    </button>
                 </div>
                 <div className="invoicing-container">
                     {invoicingList}
+                </div>
+                <div className="invoicing-discount">
+                    <label>Discount</label>
+                    <input
+                        ref={(input) => {
+                            this.discount = input
+                        }}
+                        value={discount}
+                        onChange={this.changeDiscount}
+                    />
                 </div>
                 <div className="products-btn">
                     <button onClick={this.addNewInvoice()}>

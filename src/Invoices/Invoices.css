@@ -1,0 +1,9 @@
+
+.invoices-container{
+    display: flex;
+}
+
+.invoices-item{
+    display: flex;
+    width: 150px;
+}

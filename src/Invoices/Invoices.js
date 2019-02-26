@@ -3,35 +3,29 @@ import './Invoices.css'
 import { connect } from "react-redux";
 
 class Invoices extends React.Component {
-    constructor() {
-        super()
-    }
 
     render() {
         const { invoices } = this.props;
 
         const invoices_list = invoices
             .map((item) => {
-                const { id, name, discount, total } = item
+                const { name, discount, total } = item
 
                 return (
-                    <li>
-                        <div>{id}</div>
-                        <div>{name}</div>
-                        <div>{discount}</div>
-                        <div>{total}</div>
-                    </li>
+                    <div className="invoices-container">
+                        <div className="invoices-item">{name}</div>
+                        <div className="invoices-item">{discount}</div>
+                        <div className="invoices-item">{total}</div>
+                    </div>
                 )
             })
 
-                return (
-                    <div>
-                    <ul>
-                        {invoices_list}
-                    </ul>
-                    </div>
-                )
-            }
+        return (
+            <div>
+                {invoices_list}
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = ({ invoices }) => {

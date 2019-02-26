@@ -54,7 +54,7 @@ class InvoiceDetails extends React.Component {
 
 
     render() {
-        const { customers, products, invoices } = this.props;
+        const { customers, products, invoice_details } = this.props;
         const { discount } = this.state;
 
         const customersList = customers
@@ -68,7 +68,7 @@ class InvoiceDetails extends React.Component {
                     </option>)
             })
 
-        const invoicingList = invoices
+        const invoicingList = invoice_details
             .map((invoicing) => {
                 const { name, price, id } = invoicing
                 return (
@@ -150,8 +150,8 @@ class InvoiceDetails extends React.Component {
     }
 }
 
-const mapStateToProps = ({ products, customers, invoices }) => {
-    return { products, customers, invoices }
+const mapStateToProps = ({ products, customers, invoice_details }) => {
+    return { products, customers, invoice_details }
 };
 
 const mapDispatchToProps = dispatch => {

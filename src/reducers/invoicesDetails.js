@@ -13,7 +13,7 @@ const invoice_details = (state = initialState.invoice_details, action) => {
         }
         case 'DELETE_INVOICE':
             const invoices = state.filter((invoicing) => invoicing.id !== action.id);
-            return { ...state, invoices };
+            return [ ...state, invoices ];
         default:
             return state
     }

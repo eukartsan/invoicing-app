@@ -1,9 +1,23 @@
 
-.invoices-container{
+.invoices-container {
     display: flex;
+    align-items: center;
+    margin: 10px;
 }
 
-.invoices-item{
+.invoices-item {
     display: flex;
     width: 150px;
+}
+
+.invoices-item-header {
+    display: flex;
+    width: 150px;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.invoices-item-btn {
+    margin: 0px 15px 0px 0px;
+    padding: 5px;
 }

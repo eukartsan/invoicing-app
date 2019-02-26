@@ -96,7 +96,7 @@ class InvoiceDetails extends React.Component {
             <div className="invoicing">
                 <div className="invoicing-items">
                     <h1>Invoices</h1>
-                    <Invoices/>
+                    <Invoices />
                     <h1>Invoice Details</h1>
                     <label>Customer</label>
                     <select

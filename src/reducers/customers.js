@@ -13,8 +13,8 @@ const customers = (state = initialState.customers, action) => {
             };
             return [...state, customerItems]
         case 'DELETE_CUSTOMER':
-            const customers = state.filter((customer) => customer.id !== action.id);
-            return { ...state, customers };
+            let newCustomer = state.slice();
+            return newCustomer.filter((customer) => customer.id !== action.id);
         default:
             return state
     }

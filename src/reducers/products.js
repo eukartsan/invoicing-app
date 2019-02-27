@@ -15,8 +15,8 @@ const products = (state = initialState.products, action) => {
             return [ ...state, newProduct ];
         }
         case 'DELETE_PRODUCT':
-            const products = state.filter((products) => products.id !== action.id);
-            return { ...state, products };
+            let newProduct = state.slice();
+            return newProduct.filter((products) => products.id !== action.id);
         default:
             return state
     }

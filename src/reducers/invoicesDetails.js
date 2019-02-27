@@ -11,9 +11,9 @@ const invoice_details = (state = initialState.invoice_details, action) => {
             };
             return [ ...state, newInvoicing ];
         }
-        case 'DELETE_INVOICE':
-            const invoices = state.filter((invoicing) => invoicing.id !== action.id);
-            return [ ...state, invoices ];
+        case 'DELETE_DETAILS_INVOICE':
+            let newInvoices = state.slice();
+            return newInvoices.filter((invoices) => invoices.id !== action.id);
         default:
             return state
     }

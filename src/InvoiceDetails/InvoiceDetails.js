@@ -1,7 +1,7 @@
 import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
-import { onDeleteInvoice, onNewInvoice } from '../actions';
+import { onDeleteDetailsInvoice, onNewInvoice } from '../actions';
 import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
@@ -35,13 +35,13 @@ class InvoiceDetails extends React.Component {
         //console.log(this.props.invoicingTable)
     }
 
-    deleteInvoicing = (id) => () => {
-        this.props.handleOnDelInvoice(id)
-    }
-
     addNewInvoice = (id) => (event) => {
         event.preventDefault();
         this.props.handleOnAddNewInvoice(id)
+    }
+
+    deleteInvoicing = (id) => () => {
+        this.props.handleOnDelInvoice(id)
     }
 
     changeDiscount = (event) => {
@@ -54,7 +54,7 @@ class InvoiceDetails extends React.Component {
 
 
     render() {
-        const { customers, products, invoice_details } = this.props;
+        const { customers, products, invoice } = this.props;
         const { discount } = this.state;
 
         const customersList = customers
@@ -68,9 +68,9 @@ class InvoiceDetails extends React.Component {
                     </option>)
             })
 
-        const invoicingList = invoice_details
-            .map((invoicing) => {
-                const { name, price, id } = invoicing
+        const invoicingList = invoice
+            .map((invoice_details) => {
+                const { name, price, id } = invoice_details
                 return (
                     <div className="invoicing-block-item" key={id}>
                         {invoicingItem(name)}
@@ -151,12 +151,12 @@ class InvoiceDetails extends React.Component {
 }
 
 const mapStateToProps = ({ products, customers, invoice_details }) => {
-    return { products, customers, invoice_details }
+    return { products, customers, invoice: invoice_details }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleOnDelInvoice: (id) => dispatch(onDeleteInvoice(id)),
+        handleOnDelInvoice: (id) => dispatch(onDeleteDetailsInvoice(id)),
         handleOnAddNewInvoice: (id) => dispatch(onNewInvoice(id)),
     }
 };

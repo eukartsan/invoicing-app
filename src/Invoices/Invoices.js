@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react'
 import './Invoices.css'
 import { connect } from "react-redux";
+import { onDeleteInvoice } from "../actions";
+
 
 class Invoices extends React.Component {
+
+    deleteInvoicing = (id) => () => {
+        this.props.handleOnDelInvoice(id)
+    }
 
     render() {
         const { invoices } = this.props;
@@ -18,7 +24,10 @@ class Invoices extends React.Component {
                             <div className="invoices-item">{discount}</div>
                             <div className="invoices-item">{total}</div>
                             <button className="invoices-item-btn">Edit</button>
-                            <button className="invoices-item-btn">Delete</button>
+                            <button
+                                className="invoices-item-btn"
+                                onClick={this.deleteInvoicing(id)}
+                            >Delete</button>
                         </div>
                     </Fragment>
                 )
@@ -43,4 +52,10 @@ const mapStateToProps = ({ invoices }) => {
     return { invoices }
 };
 
-export default connect(mapStateToProps, null)(Invoices)
+const mapDispatchToProps = dispatch => {
+    return {
+        handleOnDelInvoice: (id) => dispatch(onDeleteInvoice(id)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Invoices)

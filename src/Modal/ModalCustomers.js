@@ -53,43 +53,51 @@ class ModalCustomers extends React.Component {
             <div className="backdropStyle">
                 <div className="modalStyle">
                     <Fragment>
-                        <form onSubmit={this.addNewCustomers}>
-                            <p>Name:</p>
-                            <input
-                                className="modalInput"
-                                name="customersName"
-                                value={customerName}
-                                ref={(input) => {
-                                    this.customerName = input
-                                }}
-                                onChange={this.handleName}
-                            />
-                            <p>Address:</p>
-                            <input
-                                className="modalInput"
-                                name="customersAddress"
-                                value={customerAddress}
-                                ref={(input) => {
-                                    this.customerAddress = input
-                                }}
-                                onChange={this.handleAddress}
-                            />
-                            <p>Phone:</p>
-                            <input
-                                className="modalInput"
-                                name="customersPhone"
-                                value={customerPhone}
-                                ref={(input) => {
-                                    this.customerPhone = input
-                                }}
-                                onChange={this.handlePhone}
-                            />
+                        <form
+                            className="modal-container-form"
+                            onSubmit={this.addNewCustomers}>
+                            <div className="modal-container-header">
+                                <div className="modal-container-item-name">Name:</div>
+                                <div className="modal-container-item-address">Address:</div>
+                                <div className="modal-container-item-phone">Phone:</div>
+                            </div>
+                            <div className="modal-container-header">
+                                <input
+                                    className="modal-container-input"
+                                    name="customersName"
+                                    value={customerName}
+                                    ref={(input) => {
+                                        this.customerName = input
+                                    }}
+                                    onChange={this.handleName}
+                                />
+                                <input
+                                    className="modal-container-input"
+                                    name="customersAddress"
+                                    value={customerAddress}
+                                    ref={(input) => {
+                                        this.customerAddress = input
+                                    }}
+                                    onChange={this.handleAddress}
+                                />
+                                <input
+                                    className="modal-container-input"
+                                    name="customersPhone"
+                                    value={customerPhone}
+                                    ref={(input) => {
+                                        this.customerPhone = input
+                                    }}
+                                    onChange={this.handlePhone}
+                                />
+                            </div>
                             <input type="submit" value="Add" />
+                            <button
+                                className="modal-container-btn"
+                                onClick={this.toggleModalCustomer}>
+                                Close
+                            </button>
                         </form>
                     </Fragment>
-                    <button onClick={this.toggleModalCustomer}>
-                        Close
-                    </button>
                 </div>
             </div> :
             null;

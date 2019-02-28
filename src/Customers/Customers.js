@@ -121,6 +121,11 @@ class Customers extends React.Component {
 
             <div className="customers">
                 <h1>Customers</h1>
+                <div className="invoices-container-header">
+                    <div className="customers-name">Name</div>
+                    <div className="customers-address">Address</div>
+                    <div className="customers-phone">Phone</div>
+                </div>
                 <ul>
                     {customers_list}
                 </ul>

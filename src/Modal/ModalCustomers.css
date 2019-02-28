@@ -17,6 +17,32 @@
     padding: 30px;
 }
 
-.modalInput {
+.modal-container-header{
     display: flex;
+}
+
+.modal-container-form {
+    margin: 100px;
+}
+
+.modal-container-item-name{
+    margin: 5px 0;
+}
+
+.modal-container-item-address{
+    margin: 5px 72px;
+}
+
+.modal-container-item-phone{
+    margin: 5px -13px;
+}
+
+.modal-container-input {
+    display: flex;
+    width: 100px;
+    margin: 5px 10px 15px 0px;
+}
+
+.modal-container-btn{
+    margin-left: 15px;
 }

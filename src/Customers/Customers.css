@@ -45,3 +45,10 @@
 .customers h1{
     text-align: center;
 }
+
+.invoices-container-header {
+    display: flex;
+    align-items: center;
+    margin: 10px 40px;
+    font-weight: 600;
+}

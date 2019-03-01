@@ -35,6 +35,7 @@ class Invoices extends React.Component {
 
         return (
             <Fragment>
+                <h1>Invoices</h1>
                 <div className="invoices-container">
                     <div className="invoices-item-header">Customer</div>
                     <div className="invoices-item-header">Discount</div>

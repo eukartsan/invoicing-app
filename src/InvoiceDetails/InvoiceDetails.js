@@ -1,7 +1,8 @@
 import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
-import { onDeleteDetailsInvoice, onNewInvoice } from '../actions';
+import uuidv4 from 'uuid/v4'
+import { addNewCustomers, onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice } from '../actions';
 import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
@@ -16,6 +17,8 @@ class InvoiceDetails extends React.Component {
         this.state = {
             price: '',
             discount: '',
+            name: 'John',
+            price: '30'
         }
     }
 
@@ -27,14 +30,6 @@ class InvoiceDetails extends React.Component {
         this.props.setProduct(event)
     }
 
-    addNewProduct = () => {
-        //const { products } = this.props
-        const name = this.setProduct.value
-        const price = this.setCustomer.value
-        this.props.onNewInvoicing(name, price)
-        //console.log(this.props.invoicingTable)
-    }
-
     addNewInvoice = (id) => (event) => {
         event.preventDefault();
         this.props.handleOnAddNewInvoice(id)
@@ -42,6 +37,14 @@ class InvoiceDetails extends React.Component {
 
     deleteInvoicing = (id) => () => {
         this.props.handleOnDelInvoice(id)
+    }
+
+    selectNewProduct = (event) => {
+        const { onSelectNewInvoice } = this.props
+        event.preventDefault()
+        const selectInvoiceName = this.setProduct.name
+        const selectInvoicePrice = this.state.price
+        onSelectNewInvoice(uuidv4(), selectInvoiceName, selectInvoicePrice)
     }
 
     changeDiscount = (event) => {
@@ -52,18 +55,17 @@ class InvoiceDetails extends React.Component {
         }
     }
 
-
     render() {
         const { customers, products, invoice } = this.props;
         const { discount } = this.state;
 
         const customersList = customers
             .map((item) => {
-                const { name } = item;
+                const { id, name } = item;
 
                 return (
                     <option
-                        key={item.id}>
+                        key={id}>
                         {name}
                     </option>)
             })
@@ -95,12 +97,11 @@ class InvoiceDetails extends React.Component {
         return (
             <div className="invoicing">
                 <div className="invoicing-items">
-                    <h1>Invoices</h1>
                     <Invoices />
                     <h1>Invoice Details</h1>
                     <label>Customer</label>
                     <select
-                        onChange={this.selectCustomer}
+                        //onChange={this.selectCustomer}
                         ref={elem => this.setCustomer = elem}>
                         {customersList}
                     </select>
@@ -112,11 +113,12 @@ class InvoiceDetails extends React.Component {
                     <label>Product to add</label>
                     <select
                         ref={elem => this.setProduct = elem}
-                        onChange={this.selectProduct}>
+                        //onChange={this.selectProduct}
+                    >
                         {productsList}
                     </select>
                     <button
-                        onClick={this.addNewProduct}>Select
+                        onClick={this.selectNewProduct}>Select
                     </button>
                 </div>
                 <div className="invoicing-container">
@@ -158,6 +160,7 @@ const mapDispatchToProps = dispatch => {
     return {
         handleOnDelInvoice: (id) => dispatch(onDeleteDetailsInvoice(id)),
         handleOnAddNewInvoice: (id) => dispatch(onNewInvoice(id)),
+        onSelectNewInvoice: (id, name, price) => dispatch(selectNewInvoice(id, name, price)),
     }
 };
 

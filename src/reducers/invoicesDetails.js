@@ -3,11 +3,19 @@ import uuidv4 from 'uuid/v4'
 
 const invoice_details = (state = initialState.invoice_details, action) => {
     switch (action.type) {
+        case 'SELECT_NEW_INVOICE': {
+            const newInvoicing = {
+                id: uuidv4(),
+                name: action.name,
+                price: action.price,
+            };
+            return [ ...state, newInvoicing ];
+        }
         case 'ADD_NEW_INVOICE': {
             const newInvoicing = {
+                id: uuidv4(),
                 name: 'Sherlock Holmes',
-                price: '20',
-                id: uuidv4()
+                price: '20'
             };
             return [ ...state, newInvoicing ];
         }

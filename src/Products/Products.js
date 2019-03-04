@@ -43,15 +43,15 @@ class Products extends React.Component {
         editProductUpdated(event.target.value, id)
     }
 
-    addNewProduct = (id) => (event) => {
-        event.preventDefault();
-        this.props.handleOnAddNewProduct(id)
-    }
-
     toggleModalProduct = () => {
         this.setState({
             isOpenProduct: !this.state.isOpenProduct
         })
+    }
+
+    addNewProduct = (id) => (event) => {
+        event.preventDefault();
+        this.props.handleOnAddNewProduct(id)
     }
 
     render() {

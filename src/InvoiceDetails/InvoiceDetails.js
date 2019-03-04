@@ -2,7 +2,7 @@ import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid/v4'
-import { addNewCustomers, onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice } from '../actions';
+import { onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice } from '../actions';
 import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
@@ -17,8 +17,8 @@ class InvoiceDetails extends React.Component {
         this.state = {
             price: '',
             discount: '',
-            name: 'John',
-            price: '30'
+            customerSelected: '123',
+            //price: '30'
         }
     }
 
@@ -40,12 +40,20 @@ class InvoiceDetails extends React.Component {
     }
 
     selectNewProduct = (event) => {
-        const { onSelectNewInvoice } = this.props
-        event.preventDefault()
-        const selectInvoiceName = this.setProduct.name
-        const selectInvoicePrice = this.state.price
+        const { onSelectNewInvoice } = this.props;
+        event.preventDefault();
+        const selectInvoiceName = this.setProduct.value;
+        const selectInvoicePrice = this.state.price;
         onSelectNewInvoice(uuidv4(), selectInvoiceName, selectInvoicePrice)
+        console.log(selectInvoiceName)
     }
+
+    selectNewCustomer = () => {
+        const selectCustomer = this.setCustomer.value;
+                console.log(selectCustomer)
+        console.log(this.state.customerSelected)
+    }
+
 
     changeDiscount = (event) => {
         if (/^(100|[1-9]|[1-9][0-9])$/.test(event.target.value)) {
@@ -57,7 +65,7 @@ class InvoiceDetails extends React.Component {
 
     render() {
         const { customers, products, invoice } = this.props;
-        const { discount } = this.state;
+        const { discount, customerSelected } = this.state;
 
         const customersList = customers
             .map((item) => {
@@ -72,7 +80,7 @@ class InvoiceDetails extends React.Component {
 
         const invoicingList = invoice
             .map((invoice_details) => {
-                const { name, price, id } = invoice_details
+                const { id, name, price } = invoice_details
                 return (
                     <div className="invoicing-block-item" key={id}>
                         {invoicingItem(name)}
@@ -86,10 +94,11 @@ class InvoiceDetails extends React.Component {
 
         const productsList = products
             .map((item) => {
+                const { id, name } = item;
                 return (
                     <option
-                        key={item.id}>
-                        {item.name}
+                        key={id}>
+                        {name}
                     </option>
                 )
             })
@@ -106,21 +115,22 @@ class InvoiceDetails extends React.Component {
                         {customersList}
                     </select>
                     <button
-                        onClick={this.addNewProduct}>Select
+                        onClick={this.selectNewCustomer}>Select
                     </button>
                 </div>
                 <div className="invoicing-items">
                     <label>Product to add</label>
                     <select
-                        ref={elem => this.setProduct = elem}
                         //onChange={this.selectProduct}
-                    >
+                        ref={elem => this.setProduct = elem}>
                         {productsList}
                     </select>
                     <button
                         onClick={this.selectNewProduct}>Select
                     </button>
                 </div>
+                <label>Customer:</label>
+                {customerSelected}
                 <div className="invoicing-container">
                     {invoicingList}
                 </div>

@@ -6,7 +6,7 @@
 .invoicing-item{
     border: 1px solid;
     display: flex;
-    width: 300px;
+    width: 200px;
     padding: 10px;
     justify-content: space-around;
 }
@@ -32,4 +32,29 @@
     padding: 10px;
     margin: 20px;
     width: 50px;
+}
+
+.invoices-details-header{
+    display: flex;
+    font-weight: 600;
+}
+
+.invoices-details-name{
+    padding: 20px;
+    margin-left: 70px;
+}
+
+.invoices-details-address{
+    padding: 20px;
+    margin-left: 130px;
+}
+
+.invoices-details-quantity{
+    padding: 20px;
+    margin-left: 140px;
+}
+
+.invoices-details-total{
+    padding: 20px;
+    margin-left: 140px;
 }

@@ -17,17 +17,9 @@ class InvoiceDetails extends React.Component {
         this.state = {
             price: '',
             discount: '',
-            customerSelected: '123',
+            customerSelected: ''
             //price: '30'
         }
-    }
-
-    selectCustomer = (event) => {
-        this.props.setCustomer(event)
-    }
-
-    selectProduct = (event) => {
-        this.props.setProduct(event)
     }
 
     addNewInvoice = (id) => (event) => {
@@ -50,10 +42,13 @@ class InvoiceDetails extends React.Component {
 
     selectNewCustomer = () => {
         const selectCustomer = this.setCustomer.value;
-                console.log(selectCustomer)
-        console.log(this.state.customerSelected)
+        this.setState({ customerSelected: selectCustomer})
     }
 
+    quantityIncrement = () => {
+        this.setState({ quantity: this.state.quantity + 1 })
+        console.log(this.state.quantity)
+    }
 
     changeDiscount = (event) => {
         if (/^(100|[1-9]|[1-9][0-9])$/.test(event.target.value)) {
@@ -80,11 +75,23 @@ class InvoiceDetails extends React.Component {
 
         const invoicingList = invoice
             .map((invoice_details) => {
-                const { id, name, price } = invoice_details
+                const { id, name, price, quantity } = invoice_details;
+
+                //this.setState({ price: total})
+
+                //console.log(total)
+                //console.log(price * quantity)
+                //console.log(quantity)
+
                 return (
                     <div className="invoicing-block-item" key={id}>
                         {invoicingItem(name)}
                         {invoicingItem(price)}
+                        {invoicingItem(quantity)}
+                        <button
+                            onClick={this.quantityIncrement}
+                        >+</button>
+                        {invoicingItem(price * quantity)}
                         <button
                             onClick={this.deleteInvoicing(id)}>Delete
                         </button>
@@ -129,8 +136,14 @@ class InvoiceDetails extends React.Component {
                         onClick={this.selectNewProduct}>Select
                     </button>
                 </div>
-                <label>Customer:</label>
+                <label>Customer: </label>
                 {customerSelected}
+                <div className="invoices-details-header">
+                    <div className="invoices-details-name">Product</div>
+                    <div className="invoices-details-address">Price</div>
+                    <div className="invoices-details-quantity">Quantity</div>
+                    <div className="invoices-details-total">Total</div>
+                </div>
                 <div className="invoicing-container">
                     {invoicingList}
                 </div>

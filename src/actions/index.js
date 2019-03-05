@@ -1,4 +1,4 @@
-import {ADD_NEW_PRODUCT, ADD_NEW_CUSTOMER, SELECT_NEW_INVOICE, DELETE_CUSTOMER, DELETE_DETAILS_INVOICE, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
+import {ADD_NEW_PRODUCT, ADD_NEW_CUSTOMER, INVOICES_DECREMENT, INVOICES_INCREMENT, SELECT_NEW_INVOICE, DELETE_CUSTOMER, DELETE_DETAILS_INVOICE, ADD_NEW_INVOICE, DELETE_INVOICE, DELETE_PRODUCT} from './actionTypes'
 
 export const addNewCustomers = (id, name, address, phone) => {
     return {
@@ -54,6 +54,16 @@ const onDeleteDetailsInvoice = (id) => ({
     id
 });
 
+const onInvoicesIncrement = (id) => ({
+    type: INVOICES_INCREMENT,
+    id
+});
+
+const onInvoicesDecrement = (id) => ({
+    type: INVOICES_DECREMENT,
+    id
+});
+
 export {
     addNewProducts,
     onDeleteCustomers,
@@ -61,5 +71,7 @@ export {
     onDeleteInvoice,
     onNewInvoice,
     onDeleteDetailsInvoice,
-    selectNewInvoice
+    selectNewInvoice,
+    onInvoicesIncrement,
+    onInvoicesDecrement
 }

@@ -90,13 +90,13 @@ const initialState = {
         {
             name: 'Phone Holder',
             price: '9.99',
-            quantity: '1',
+            quantity: 1,
             id: uuidv4(),
         },
         {
             name: 'Pet Rock',
             price: '5.99',
-            quantity: '1',
+            quantity: 1,
             id: uuidv4(),
         },
     ],

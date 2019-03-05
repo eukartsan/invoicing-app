@@ -2,7 +2,7 @@ import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid/v4'
-import { onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice } from '../actions';
+import { onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice, onInvoicesIncrement, onInvoicesDecrement } from '../actions';
 import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
@@ -31,6 +31,14 @@ class InvoiceDetails extends React.Component {
         this.props.handleOnDelInvoice(id)
     }
 
+    quantityIncrement = (id) => () => {
+        this.props.handleOnInvoicesIncrement(id)
+    }
+
+    quantityDecrement = (id) => () => {
+        this.props.handleOnInvoicesDecrement(id)
+    }
+
     selectNewProduct = (event) => {
         const { onSelectNewInvoice } = this.props;
         event.preventDefault();
@@ -43,11 +51,6 @@ class InvoiceDetails extends React.Component {
     selectNewCustomer = () => {
         const selectCustomer = this.setCustomer.value;
         this.setState({ customerSelected: selectCustomer})
-    }
-
-    quantityIncrement = () => {
-        this.setState({ quantity: this.state.quantity + 1 })
-        console.log(this.state.quantity)
     }
 
     changeDiscount = (event) => {
@@ -77,20 +80,21 @@ class InvoiceDetails extends React.Component {
             .map((invoice_details) => {
                 const { id, name, price, quantity } = invoice_details;
 
-                //this.setState({ price: total})
-
-                //console.log(total)
-                //console.log(price * quantity)
-                //console.log(quantity)
-
                 return (
                     <div className="invoicing-block-item" key={id}>
                         {invoicingItem(name)}
                         {invoicingItem(price)}
                         {invoicingItem(quantity)}
-                        <button
-                            onClick={this.quantityIncrement}
-                        >+</button>
+                        <div className="invoicing-block-operators">
+                            <button
+                                onClick={this.quantityIncrement(id)}
+                            >&#8743;
+                            </button>
+                            <button
+                                onClick={this.quantityDecrement(id)}
+                            >&#8744;
+                            </button>
+                        </div>
                         {invoicingItem(price * quantity)}
                         <button
                             onClick={this.deleteInvoicing(id)}>Delete
@@ -182,6 +186,8 @@ const mapStateToProps = ({ products, customers, invoice_details }) => {
 const mapDispatchToProps = dispatch => {
     return {
         handleOnDelInvoice: (id) => dispatch(onDeleteDetailsInvoice(id)),
+        handleOnInvoicesIncrement: (id) => dispatch(onInvoicesIncrement(id)),
+        handleOnInvoicesDecrement: (id) => dispatch(onInvoicesDecrement(id)),
         handleOnAddNewInvoice: (id) => dispatch(onNewInvoice(id)),
         onSelectNewInvoice: (id, name, price) => dispatch(selectNewInvoice(id, name, price)),
     }

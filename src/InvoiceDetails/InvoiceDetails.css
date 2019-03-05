@@ -58,3 +58,8 @@
     padding: 20px;
     margin-left: 140px;
 }
+
+.invoicing-block-operators{
+    display: flex;
+    flex-direction: column;
+}

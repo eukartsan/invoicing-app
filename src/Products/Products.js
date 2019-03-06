@@ -124,6 +124,12 @@ class Products extends React.Component {
         return (
             <div className="products">
                 <h1>Products</h1>
+                <div className="invoices-container-header">
+                    <div className="products-name">Name</div>
+                    <div className="products-price">Price</div>
+                    <div className="products-createdAt">Created At</div>
+                    <div className="products-createdAt">Updated At</div>
+                </div>
                 <ul>
                     {products_list}
                 </ul>

@@ -8,7 +8,7 @@ const invoice_details = (state = initialState.invoice_details, action) => {
                 id: uuidv4(),
                 name: action.name,
                 price: action.price,
-                quantity: '1',
+                quantity: 1,
             };
             return [ ...state, newInvoicing ];
         }
@@ -17,7 +17,7 @@ const invoice_details = (state = initialState.invoice_details, action) => {
                 id: uuidv4(),
                 name: 'Sherlock Holmes',
                 price: '20',
-                quantity: '1',
+                quantity: 1,
             };
             return [ ...state, newInvoicing ];
         }

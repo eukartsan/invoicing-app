@@ -57,49 +57,55 @@ class ModalProducts extends React.Component {
 
         const Modal = isOpenProduct ?
             <div className="backdropStyle">
-                <div className="modalStyle">
+                <div className="modal-products-style">
                     <Fragment>
-                        <form onSubmit={this.addNewProducts}>
-                            <p>Name:</p>
-                            <input
-                                className="modalInput"
-                                name="productsName"
-                                value={productsName}
-                                ref={(input) => {
-                                    this.productsName = input
-                                }}
-                                onChange={this.handleName}
-                            />
-                            <p>Price:</p>
-                            <input
-                                className="modalInput"
-                                name="productsPrice"
-                                value={productsPrice}
-                                ref={(input) => {
-                                    this.productsPrice = input
-                                }}
-                                onChange={this.handlePrice}
-                            />
-                            <p>Created At:</p>
-                            <input
-                                className="modalInput"
-                                name="productsCreatedAt"
-                                value={productsCreatedAt}
-                                ref={(input) => {
-                                    this.productsCreatedAt = input
-                                }}
-                                onChange={this.handleCreatedAt}
-                            />
-                            <p>Dated At:</p>
-                            <input
-                                className="modalInput"
-                                name="productsDatedAt"
-                                value={productsDatedAt}
-                                ref={(input) => {
-                                    this.productsDatedAt = input
-                                }}
-                                onChange={this.handleDatedAt}
-                            />
+                        <form
+                            className="modal-container-form"
+                            onSubmit={this.addNewProducts}>
+                            <div className="modal-container-header">
+                                <div className="modal-container-item-name">Name:</div>
+                                <div className="modal-container-item-address">Price:</div>
+                                <div className="modal-container-item-created">Created At:</div>
+                                <div className="modal-container-item-dated">Dated At:</div>
+                            </div>
+                            <div className="modal-container-header">
+                                <input
+                                    className="modal-products-input"
+                                    name="productsName"
+                                    value={productsName}
+                                    ref={(input) => {
+                                        this.productsName = input
+                                    }}
+                                    onChange={this.handleName}
+                                />
+                                <input
+                                    className="modal-products-input"
+                                    name="productsPrice"
+                                    value={productsPrice}
+                                    ref={(input) => {
+                                        this.productsPrice = input
+                                    }}
+                                    onChange={this.handlePrice}
+                                />
+                                <input
+                                    className="modal-products-input"
+                                    name="productsCreatedAt"
+                                    value={productsCreatedAt}
+                                    ref={(input) => {
+                                        this.productsCreatedAt = input
+                                    }}
+                                    onChange={this.handleCreatedAt}
+                                />
+                                <input
+                                    className="modal-products-input"
+                                    name="productsDatedAt"
+                                    value={productsDatedAt}
+                                    ref={(input) => {
+                                        this.productsDatedAt = input
+                                    }}
+                                    onChange={this.handleDatedAt}
+                                />
+                            </div>
                             <input
                                 type="submit"
                                 value="Add" />
@@ -122,7 +128,7 @@ class ModalProducts extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addProduct: (id, name, createdAt, updatedAt) => dispatch(addNewProducts(id, name, createdAt, updatedAt)),
+        addProduct: (id, name, price, createdAt, updatedAt) => dispatch(addNewProducts(id, name, price, createdAt, updatedAt)),
     }
 };
 

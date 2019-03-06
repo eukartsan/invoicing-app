@@ -19,11 +19,12 @@ const selectNewInvoice = (id, name, price) => {
     };
 };
 
-const addNewProducts = (id, name, createdAt, updatedAt) => {
+const addNewProducts = (id, name, price, createdAt, updatedAt) => {
     return {
         type: ADD_NEW_PRODUCT,
         id,
         name,
+        price,
         createdAt,
         updatedAt
     }

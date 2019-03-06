@@ -79,6 +79,8 @@ class InvoiceDetails extends React.Component {
         const invoicingList = invoice
             .map((invoice_details) => {
                 const { id, name, price, quantity } = invoice_details;
+                const total = price * quantity;
+                const totals = total.toFixed(2);
 
                 return (
                     <div className="invoicing-block-item" key={id}>
@@ -95,7 +97,7 @@ class InvoiceDetails extends React.Component {
                             >&#8744;
                             </button>
                         </div>
-                        {invoicingItem(price * quantity)}
+                        {invoicingItem(totals)}
                         <button
                             onClick={this.deleteInvoicing(id)}>Delete
                         </button>

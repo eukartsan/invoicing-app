@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import './ModalCustomers.css'
 import uuidv4 from 'uuid/v4'
 import { connect } from 'react-redux'
-import { addNewCustomers} from "../actions";
+import { addNewCustomers } from "../actions";
 
 class ModalCustomers extends React.Component {
     constructor() {
@@ -51,7 +51,7 @@ class ModalCustomers extends React.Component {
 
         const Modal = isOpenCustomer ?
             <div className="backdropStyle">
-                <div className="modalStyle">
+                <div className="modal-customers-style">
                     <Fragment>
                         <form
                             className="modal-container-form"

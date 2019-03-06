@@ -5,36 +5,32 @@
     left: 0;
     right: 0;
     padding: 50px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modalStyle {
+.modal-customers-style {
     border-right: 5px;
     background-color: #ffffff;
-    max-width: 500px;
-    min-height: 300px;
+    max-width: 400px;
+    min-height: 200px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 5px 10px;
 }
 
-.modal-container-header{
+.modal-container-header {
     display: flex;
 }
 
 .modal-container-form {
-    margin: 100px;
+    margin: 50px;
 }
 
-.modal-container-item-name{
+.modal-container-item-name {
     margin: 5px 0;
 }
 
-.modal-container-item-address{
-    margin: 5px 72px;
-}
-
-.modal-container-item-phone{
-    margin: 5px -13px;
+.modal-container-item-address {
+    margin: 5px 55px;
 }
 
 .modal-container-input {
@@ -43,6 +39,6 @@
     margin: 5px 10px 15px 0px;
 }
 
-.modal-container-btn{
+.modal-container-btn {
     margin-left: 15px;
 }

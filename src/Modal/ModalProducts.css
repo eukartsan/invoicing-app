@@ -1,0 +1,24 @@
+
+.modal-products-style {
+    border-right: 5px;
+    background-color: #ffffff;
+    max-width: 500px;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 15px 60px;
+}
+
+.modal-products-input {
+    display: flex;
+    width: 80px;
+    height: 20px;
+    margin: 5px 10px 15px 0px;
+}
+
+.modal-container-item-created {
+    margin: 5px 5px;
+}
+
+.modal-container-item-dated {
+    margin: 5px 10px;
+}

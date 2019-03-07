@@ -2,7 +2,14 @@ import React from 'react'
 import './InvoiceDetails.css'
 import { connect } from 'react-redux';
 import uuidv4 from 'uuid/v4'
-import { onDeleteDetailsInvoice, onNewInvoice, selectNewInvoice, onInvoicesIncrement, onInvoicesDecrement } from '../actions';
+import {
+    onDeleteDetailsInvoice,
+    changeNewInvoice,
+    onNewInvoice,
+    selectNewInvoice,
+    onInvoicesIncrement,
+    onInvoicesDecrement
+} from '../actions';
 import Invoices from '../Invoices/Invoices'
 
 const invoicingItem = (value) =>
@@ -25,6 +32,12 @@ class InvoiceDetails extends React.Component {
     addNewInvoice = (id) => (event) => {
         event.preventDefault();
         this.props.handleOnAddNewInvoice(id)
+    }
+
+    changeNewInvoice = () => {
+        const { handleChangeNewInvoice } = this.props;
+        const selectInvoiceName = this.state.customerSelected
+        handleChangeNewInvoice(uuidv4(), selectInvoiceName)
     }
 
     deleteInvoicing = (id) => () => {
@@ -50,7 +63,7 @@ class InvoiceDetails extends React.Component {
 
     selectNewCustomer = () => {
         const selectCustomer = this.setCustomer.value;
-        this.setState({ customerSelected: selectCustomer})
+        this.setState({ customerSelected: selectCustomer })
     }
 
     changeDiscount = (event) => {
@@ -73,7 +86,8 @@ class InvoiceDetails extends React.Component {
                     <option
                         key={id}>
                         {name}
-                    </option>)
+                    </option>
+                )
             })
 
         const invoicingList = invoice
@@ -169,7 +183,9 @@ class InvoiceDetails extends React.Component {
                     </button>
                 </div>
                 <div>
-                    <button>
+                    <button
+                        onClick={this.changeNewInvoice}
+                    >
                         Save
                     </button>
                     <button>
@@ -191,6 +207,7 @@ const mapDispatchToProps = dispatch => {
         handleOnInvoicesIncrement: (id) => dispatch(onInvoicesIncrement(id)),
         handleOnInvoicesDecrement: (id) => dispatch(onInvoicesDecrement(id)),
         handleOnAddNewInvoice: (id) => dispatch(onNewInvoice(id)),
+        handleChangeNewInvoice: (id, name) => dispatch(changeNewInvoice(id, name)),
         onSelectNewInvoice: (id, name, price) => dispatch(selectNewInvoice(id, name, price)),
     }
 };
